@@ -40,7 +40,7 @@ logo: /assets/img/uglycat.jpeg
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
   # Used by `jekyll-feed`:
-  name: h0ri
+  name: hori
   email: bomlang4211@gmail.com
   # # Used by `jekyll-seo-tag`:
   # twitter:             <username>
@@ -48,21 +48,19 @@ author:
 # Add links to the sidebar.
 menu:
   - title: Programming
-    url: /programming/
+    url: /programming/_posts
   - title: Lifelog
     url: /lifelog/
-  - title: About
-    url: /about/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
-legal:
-  - title: LICENSE
-    url: /LICENSE/
-  - title: NOTICE
-    url: /NOTICE/
-  - title: CHANGELOG
-    url: /CHANGELOG/
+# legal:
+#   - title: LICENSE
+#     url: /LICENSE/
+#   - title: NOTICE
+#     url: /NOTICE/
+#   - title: CHANGELOG
+#     url: /CHANGELOG/
 
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright: © 2023 by h0ri. All Page content is property of h0ri.
