@@ -19,7 +19,7 @@ url: https://bomlang.github.io
 lang: ko
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title: HORI
+title: h0ri
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
@@ -27,7 +27,7 @@ description: >
   나의 기록보관소
 
 # A shorter description for the sidebar.
-tagline: programming, music
+tagline: 호리의 종합 발자취
 
 # A list of keywords for your blog
 keywords: [Web, Develop, programming]
@@ -35,7 +35,7 @@ keywords: [Web, Develop, programming]
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
-logo: /assets/img/uglycat.jpeg
+logo: /assets/img/myIcon.PNG
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
@@ -347,11 +347,11 @@ plugins:
 #   admins:              <id>
 
 # Used on index and about sites
-# social:
-#   name:                <firstname> <lastname>
-#   links:
-#     - https://twitter.com/<username>
-#     - https://github.com/<username>
+social:
+  name: <firstname> <lastname>
+  links:
+    - https://twitter.com/<username>
+    - https://github.com/bomlang
 
 # Plugin Configs
 # ---------------------------------------------------------------------------------------
