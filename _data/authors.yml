@@ -14,11 +14,11 @@ author1:
 
   # This photo will be used in the about section
   picture:
-    path: /assets/img/myIcon.PNG
+    path: /assets/icon/HORI02.PNG
     # srcset is optional, but can be used to provide higher res versions for retina displays
     srcset:
-      1x: /assets/img/myIcon.PNG
-      2x: /assets/img/myIcon.PNG
+      1x: /assets/icon/HORI02.PNG
+      2x: /assets/icon/HORI02.PNG
 
   # Social media icons in sidebar
   # Comment/uncommet to show/hide

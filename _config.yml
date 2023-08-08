@@ -16,10 +16,10 @@ url: https://bomlang.github.io
 
 # Language of your content in 2-letter code, e.g.: en, de.
 # You may also provide a location, e.g.: en-us, de_AT.
-lang: ko
+lang: ko-KR
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title: h0ri
+title: HORI
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
@@ -27,7 +27,7 @@ description: >
   나의 기록보관소
 
 # A shorter description for the sidebar.
-tagline: 호리의 종합 발자취
+tagline: HORI의 종합 발자취
 
 # A list of keywords for your blog
 keywords: [Web, Develop, programming]
@@ -35,7 +35,7 @@ keywords: [Web, Develop, programming]
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
 # It also used by the `jekyll-seo-tag` plugin.
-logo: /assets/img/myIcon.PNG
+logo: /assets/icon/HORI02.PNG
 
 # This should be the same author as first entry in `_data/authors.yml`.
 author:
@@ -52,6 +52,9 @@ menu:
   - title: Lifelog
     url: /lifelog/
 
+favicon: /assets/icon/favicon.ico
+apple_touch_icon: /assets/img/logo.png
+
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
 # legal:
@@ -63,7 +66,7 @@ menu:
 #     url: /CHANGELOG/
 
 # This text will appear in a `<small>` tag in the footer of every page.
-copyright: © 2023 by h0ri. All Page content is property of h0ri.
+copyright: © 2023 by HORI. All Page content is property of h0ri.
 
 # Format of the permalinks
 permalink: /:categories/:year-:month-:day-:title/
