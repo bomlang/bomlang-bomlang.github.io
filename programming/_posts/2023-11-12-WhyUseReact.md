@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 왜 리액트를 사용하는가?/(FE-PLUS)
+title: Why use React?/(FE-PLUS)
 tag: React
 ---
 
