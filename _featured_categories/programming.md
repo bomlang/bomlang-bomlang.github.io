@@ -10,7 +10,7 @@ slug: programming
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  기록하는 공간
+  학습을 기록하는 공간
 
 # Setting `menu` will generate an entry in the sidebar for this tag.
 menu: true
