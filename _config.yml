@@ -51,6 +51,8 @@ menu:
     url: /programming/
   - title: Lifelog
     url: /lifelog/
+  - title: Project
+    url: /project/
 
 favicon: /assets/icon/favicon.ico
 apple_touch_icon: /assets/img/logo.png
@@ -85,7 +87,7 @@ remote_theme: hydecorp/hydejack@v9
 # ----------------------------------------------------------------------------------------
 
 # Sidebar image and theme color of the site.
-accent_image: /assets/img/aniBG.jpeg
+accent_image: /assets/img/blogBG1.png
 accent_color: rgb(79,177,186)
 
 # This is used for the `theme-color` meta tag,
