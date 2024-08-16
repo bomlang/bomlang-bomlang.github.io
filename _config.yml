@@ -51,24 +51,20 @@ author:
 menu:
   - title: ABOUT
     url: /about/
-  - title: STUDY LOG
-    url: /studylog/
+  - title: 공부
+    url: /study/
     submenu:
-      - title: OS
-        url: /os/
-      - title: NETWORK
-        url: /network/
-      - title: HYDEJACK
-        url: /hydejack/
-  - title: GAME DEVELOG
-    url: /gamedevelog/
+      - title: React
+        url: /React/
+      - title: tailwindCSS
+        url: /tailwindCSS/
+  - title: 프로젝트
+    url: /project/
     submenu:
       - title: UNREAL ENGINE
         url: /unrealengine/
-  - title: GAME ANALYSIS
-    url: /gameanalysis/
-  - title: BAEKJOON
-    url: /baekjoon/
+  - title: 日本語勉強
+    url: /日本語勉強/
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
