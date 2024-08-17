@@ -90,7 +90,8 @@ paginate_path: /:num/
 # 테마
 # ---------------------------------------------------------------------------------------
 
-theme: jekyll-theme-hydejack
+remote_theme: qwtel/hydejack@v8.1.1
+# theme: jekyll-theme-hydejack
 # remote_theme: hydecorp/hydejack@v9
 
 # 커스터마이징
