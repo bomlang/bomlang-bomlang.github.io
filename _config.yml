@@ -1,73 +1,74 @@
-# Config
+# 설정
 # ========================================================================================
 
-# Uncomment and set the URL of your site (with protocol, e.g. `https://`)
-# NOTE: You don't need to provide this property when hosting on GitHub Pages or Netlify.
+# 사이트의 URL을 설정하려면 주석을 해제하고 설정하세요 (프로토콜 포함, 예: `https://`)
+# 참고: GitHub Pages나 Netlify에 호스팅하는 경우 이 속성을 제공할 필요가 없습니다.
 # url:                   https://username.github.io
 
-# Uncomment and set the "base URL" of your site.
-# When your site is in a subdirectory, set to `/<name of directory>`,
-# with a leading `/` but no trailing `/`. Use the empty string '' otherwise.
-# NOTE: You don't need to provide this property when hosting on GitHub Pages or Netlify.
+# 사이트의 "기본 URL"을 설정하려면 주석을 해제하고 설정하세요.
+# 사이트가 하위 디렉토리에 있을 때, `/<디렉토리 이름>`으로 설정하세요,
+# 앞에 `/`를 추가하되 뒤에 `/`는 추가하지 마세요. 그렇지 않으면 빈 문자열 ''을 사용하세요.
+# 참고: GitHub Pages나 Netlify에 호스팅하는 경우 이 속성을 제공할 필요가 없습니다.
 # baseurl:               '/hydejack-starter-kit'
 
-# General settings
+# 일반 설정
 # ---------------------------------------------------------------------------------------
 
-# Language of your content in 2-letter code, e.g.: en, de.
-# You may also provide a location, e.g.: en-us, de_AT.
-lang: en
+# 콘텐츠의 언어를 2글자 코드로 설정하세요, 예: en, de.
+# 위치를 제공할 수도 있습니다, 예: en-us, de_AT.
+lang: ko-KR
 
-# The title of your blog. Used in the sidebar and the browser tab.
-title: Starter Kit
+# 블로그의 제목입니다. 사이드바와 브라우저 탭에 사용됩니다.
+title: H0ri
 
-# A short description (~150 chars) of the page used for the meta description tag.
-# Can use markdown, but no more than one paragraph (enforced by `>`)
+# 메타 설명 태그에 사용되는 페이지의 짧은 설명 (~150자)입니다.
+# 마크다운을 사용할 수 있지만 한 단락을 초과하지 않도록 하세요 (`>`로 강제됨).
 description: >
-  Hydejack is a boutique Jekyll theme for hackers, nerds, and academics,
-  with a focus on personal sites that are meant to impress.
+  프론트엔드 개발 & 일본어 공부를 위한 블로그입니다.
 
-# A shorter description for the sidebar.
-tagline: Change `tagline` in `_config.yml`
+# 사이드바를 위한 짧은 설명입니다.
+tagline: 호리의 종합 발자취
 
-# A list of keywords for your blog
-keywords: []
+# 블로그에 대한 키워드 목록
+keywords: [frontend, 일본어]
 
-# A (square) logo for your site.
-# If provided, it will be shown at the top of the sidebar.
-# It also used by the `jekyll-seo-tag` plugin.
+# 사이트의 (정사각형) 로고입니다.
+# 제공되는 경우 사이드바 상단에 표시됩니다.
+# `jekyll-seo-tag` 플러그인에서도 사용됩니다.
 logo: /assets/img/logo.png
 
-# This should be the same author as first entry in `_data/authors.yml`.
+# `_data/authors.yml`의 첫 번째 항목과 동일한 저자여야 합니다.
 author:
-  # Used by `jekyll-feed`:
-  name: <firstname> <lastname>
-  email: <mail@domain.tld>
-  # # Used by `jekyll-seo-tag`:
+  # `jekyll-feed`에서 사용됨:
+  name: Lee Ho
+  email:
+    bomlang4211@gmail.com
+    # # `jekyll-seo-tag`에서 사용됨:
   # twitter:             <username>
 
-# Add links to the sidebar.
-# Add links to the sidebar.
+# 사이드바에 링크를 추가합니다.
 menu:
-  - title: ABOUT
-    url: /about/
+  - title: lifelog
+    url: /lifelog/
   - title: 공부
     url: /study/
     submenu:
       - title: React
-        url: /React/
+        url: /react/
       - title: tailwindCSS
-        url: /tailwindCSS/
+        url: /tailwind/
   - title: 프로젝트
     url: /project/
-    submenu:
-      - title: UNREAL ENGINE
-        url: /unrealengine/
   - title: 日本語勉強
-    url: /日本語勉強/
+    url: /japanese/
+    submenu:
+      - title: 宿題
+        url: /homework/
+      - title: 文法
+        url: /grammar/
 
-# Add links to the footer.
-# Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
+# 푸터에 링크를 추가합니다.
+# 일반적으로 쿠키 정책이나 개인정보 보호정책 등에 링크를 추가하는 것이 좋습니다.
 legal:
   - title: LICENSE
     url: /LICENSE/
@@ -76,52 +77,51 @@ legal:
   - title: CHANGELOG
     url: /CHANGELOG/
 
-# This text will appear in a `<small>` tag in the footer of every page.
-copyright: © 2021. All rights reserved.
+# 이 텍스트는 모든 페이지의 푸터에 `<small>` 태그로 나타납니다.
+copyright: © 2023. All rights reserved.
 
-# Format of the permalinks
+# 고유 링크 형식
 permalink: /:categories/:year-:month-:day-:title/
 
-# Pagination configuration (used by the `blog` layout)
+# 페이지네이션 설정 (블로그 레이아웃에서 사용됨)
 paginate: 10
 paginate_path: /:num/
 
-# Theme
+# 테마
 # ---------------------------------------------------------------------------------------
 
 theme: jekyll-theme-hydejack
 # remote_theme: hydecorp/hydejack@v9
 
-# Customizaton
+# 커스터마이징
 # ----------------------------------------------------------------------------------------
 
-# Sidebar image and theme color of the site.
-accent_image: /assets/img/sidebar-bg.jpg
+# 사이트의 사이드바 이미지 및 테마 색상.
+accent_image: /assets/img/earth.jpg
 accent_color: rgb(79,177,186)
 
-# This is used for the `theme-color` meta tag,
-# which changes the background color of the browser UI in certain browsers.
-# Defaults to `accent_color`.
+# `theme-color` 메타 태그에 사용됩니다.
+# 특정 브라우저에서 브라우저 UI의 배경색을 변경합니다.
+# 기본값은 `accent_color`입니다.
 theme_color: rgb(25,55,71)
 
-# The string encoding which fonts to fetch from Google Fonts.
-# See: <https://hydejack.com/docs/configuration/>
+# Google Fonts에서 가져올 글꼴을 인코딩하는 문자열입니다.
+# 자세한 내용은 <https://hydejack.com/docs/configuration/>을 참조하세요.
 google_fonts: Roboto+Slab:700|Noto+Sans:400,400i,700,700i
 
-# The text font. Expects a string that is a valid CSS font-family value.
-# To change font-weight, see _sass/variables.scss
+# 텍스트 글꼴입니다. 유효한 CSS 글꼴 패밀리 값을 기대합니다.
+# 글꼴 굵기를 변경하려면 _sass/variables.scss를 참조하세요.
 font: Noto Sans, Helvetica, Arial, sans-serif
 
-# The font used for headings. Expects a string that is a valid CSS font-family value.
-# To change font-weight, see _sass/variables.scss
+# 헤딩에 사용되는 글꼴입니다. 유효한 CSS 글꼴 패밀리 값을 기대합니다.
+# 글꼴 굵기를 변경하려면 _sass/variables.scss를 참조하세요.
 font_heading: Roboto Slab, Helvetica, Arial, sans-serif
 
-# The font used for code blocks. Expects a string that is a valid CSS font-family value.
+# 코드 블록에 사용되는 글꼴입니다. 유효한 CSS 글꼴 패밀리 값을 기대합니다.
 font_code: Fira Code, Menlo, Monaco, Consolas, monospace;
 
 defaults:
-  # You can use this to provide a default accent color and background for
-  # all pages under a given path:
+  # 다음을 사용하여 주어진 경로 아래의 모든 페이지에 대한 기본 강조 색상과 배경을 제공할 수 있습니다:
   - scope:
       path: hyde/
     values:
@@ -131,7 +131,7 @@ defaults:
         background: rgb(32,32,32)
         overlay: false
 
-  # Don't include documents in assets in the sitemap
+    # 사이트맵에서 assets에 있는 문서를 포함하지 마세요.
   - scope:
       path: assets/
     values:
