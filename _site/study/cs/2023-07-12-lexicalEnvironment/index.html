@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>렉시컬 환경과 스코프(Scope) | H0ri</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="렉시컬 환경과 스코프(Scope)" />
+<meta name="author" content="Lee Ho" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="description" content="JavaScript의 lexical environment에 대해서 학습하고 기록합니다." />
+<meta property="og:description" content="JavaScript의 lexical environment에 대해서 학습하고 기록합니다." />
+<link rel="canonical" href="http://localhost:4000/study/cs/2023-07-12-lexicalEnvironment/" />
+<meta property="og:url" content="http://localhost:4000/study/cs/2023-07-12-lexicalEnvironment/" />
+<meta property="og:site_name" content="H0ri" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-12T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="렉시컬 환경과 스코프(Scope)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lee Ho"},"dateModified":"2024-08-20T09:40:49+09:00","datePublished":"2023-07-12T00:00:00+09:00","description":"JavaScript의 lexical environment에 대해서 학습하고 기록합니다.","headline":"렉시컬 환경과 스코프(Scope)","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/study/cs/2023-07-12-lexicalEnvironment/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/cat.png"},"name":"Lee Ho"},"url":"http://localhost:4000/study/cs/2023-07-12-lexicalEnvironment/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="frontend,일본어">
+  
+
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="H0ri">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="H0ri">
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+
+<link rel="alternate" href="http://localhost:4000/study/cs/2023-07-12-lexicalEnvironment/" hreflang="ko-kr">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="H0ri" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+
+
+
+
+<script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2024-08-20T09:48:33+09:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.5);--accent-color-highlight: rgba(79, 177, 186, 0.1);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71)}
+</style>
+
+
+<!--<![endif]-->
+
+
+<script type="module">
+  document.querySelector("hy-push-state").addEventListener("load", () => {
+    let tocElement = document.getElementById("markdown-toc");
+
+    if (tocElement) {
+      let affixedDiv = document.createElement("div");
+      affixedDiv.style.position = "relative";
+      affixedDiv.style.top = "-1rem";
+      tocElement.parentNode.insertBefore(affixedDiv, tocElement);
+
+      let headerList = document.getElementsByClassName("permalink");
+      let prevElement;
+      window.addEventListener("scroll", () => {
+        let hurdleTop = affixedDiv.getBoundingClientRect().top;
+        if (hurdleTop <= 0) {
+          tocElement.classList.add("affix");
+        } else {
+          tocElement.classList.remove("affix");
+        }
+
+        for (let i = 0; i < headerList.length; i++) {
+          if (headerList[i].getBoundingClientRect().top >= 0) {
+            prevElement?.style.removeProperty("font-weight");
+            let tocId = "markdown-toc-" + headerList[i].parentNode.id;
+            prevElement = document.getElementById(tocId);
+            prevElement.style.fontWeight = "bold";
+
+            break;
+          }
+        }
+      });
+    }
+  });
+</script>
+
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+<script src="/assets/js/sidebar-folder.js"></script>
+
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/study/">study</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/study/cs/">cs</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2023-07-12-lexicalEnvironment</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-study-cs-lexicalEnvironment" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        렉시컬 환경과 스코프(Scope)
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2023-07-12T00:00:00+09:00">12 Jul 2023</time> in <a href="/study/" class="flip-title">Study</a> / <a href="/cs/" class="flip-title">about CS</a> 
+      </span>
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      JavaScript의 lexical environment에 대해서 학습하고 기록합니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <h2 id="개요---왜-자바스크립트-개발자들은-var를-쓰지-말라고-하는가">개요 - 왜 자바스크립트 개발자들은 var를 쓰지 말라고 하는가?</h2>
+
+<p>자바스크립트 초기에 사용되었던 <code class="language-plaintext highlighter-rouge">var</code>는 여전히 사용할 수 있지만, 많은 개발자들이 <code class="language-plaintext highlighter-rouge">var</code>의 사용을 지양하고 있습니다. 그 이유는 주로 호이스팅과 관련이 있습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">var</code>는 함수 레벨로 호이스팅되며, 이 과정에서 변수가 <code class="language-plaintext highlighter-rouge">undefined</code>로 초기화됩니다. 이로 인해 코드의 실행 결과를 예측하기 어려울 뿐만 아니라, 오류가 발생하더라도 <code class="language-plaintext highlighter-rouge">undefined</code> 때문에 디버깅이 어려울 수 있습니다.</p>
+
+<h3 id="호이스팅과-렉시컬-환경">호이스팅과 렉시컬 환경</h3>
+
+<p>렉시컬 환경에 대해 이야기하기 전에, 호이스팅과의 관계를 이해하는 것이 중요합니다.</p>
+
+<p>호이스팅은 변수와 함수 선언이 해당 스코프의 최상단으로 끌어올려지는 자바스크립트의 특성을 말합니다. 렉시컬 환경은 이 호이스팅과 밀접한 관련이 있습니다.</p>
+
+<p><br /></p>
+
+<h2 id="렉시컬-환경과-스코프scope">렉시컬 환경과 스코프(Scope)</h2>
+
+<p>렉시컬 환경을 이해하기 위해서는 스코프에 대한 이해가 필요합니다. 자바스크립트에서 스코프는 크게 두 가지로 나뉩니다:</p>
+
+<ol>
+  <li>전역 스코프(Global Scope)</li>
+  <li>지역 스코프(Local Scope)</li>
+</ol>
+
+<p><br /></p>
+
+<p>그리고 스코프는 다음과 같은 유효 범위를 가집니다:</p>
+
+<ol>
+  <li>전역(Global)</li>
+  <li>함수(Function)</li>
+  <li>블록(Block)</li>
+</ol>
+
+<p>렉시컬 환경은 코드가 작성된 문맥(context)에서 결정되는 변수와 함수의 유효 범위를 가리킵니다.</p>
+
+<p>자바스크립트 엔진이 코드를 실행하기 전에, 각 스코프는 렉시컬 환경을 통해 정의됩니다.</p>
+
+<h3 id="코드-예시와-함께-렉시컬-환경-이해하기">코드 예시와 함께 렉시컬 환경 이해하기</h3>
+
+<p>아래는 렉시컬 환경을 이해하기 위한 간단한 코드 예시입니다:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="nf">bar</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nf">foo</span><span class="p">();</span> <span class="c1">// 1</span>
+<span class="nf">bar</span><span class="p">();</span> <span class="c1">// 1</span>
+</code></pre></div></div>
+
+<p>이 코드가 실행되면, 자바스크립트는 먼저 전역 스코프(Global Scope)를 설정합니다. 전역 스코프에서는 <code class="language-plaintext highlighter-rouge">var x = 1;</code>이 선언되어 있으며, 이는 전역 변수 x를 정의합니다. 이후 <code class="language-plaintext highlighter-rouge">foo()</code>와 <code class="language-plaintext highlighter-rouge">bar()</code> 함수가 전역 스코프에 선언됩니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">foo()</code> 함수가 호출되면, 새로운 함수 스코프(Function Scope)가 생성됩니다. 이 함수 스코프 내에서는 <code class="language-plaintext highlighter-rouge">var x = 10;</code>이 선언되지만, 이 <code class="language-plaintext highlighter-rouge">x</code>는 전역 스코프의 x와는 별개의 변수입니다.</p>
+
+<p>하지만 <code class="language-plaintext highlighter-rouge">bar()</code> 함수는 전역 스코프에서 정의된 x를 참조합니다. 이는 <code class="language-plaintext highlighter-rouge">bar()</code> 함수가 정의된 위치에서의 렉시컬 환경에 의해 결정됩니다. 즉, <code class="language-plaintext highlighter-rouge">bar()</code> 함수는 전역 스코프에서 x를 찾게 됩니다.</p>
+
+<p><br /></p>
+
+<h2 id="렉시컬-환경의-구조와-동작">렉시컬 환경의 구조와 동작</h2>
+
+<p>렉시컬 환경은 크게 두 부분으로 구성됩니다:</p>
+
+<ol>
+  <li>환경 레코드(Environment Record): 현재 스코프 내에 정의된 변수와 함수들의 정보를 담고 있습니다.</li>
+  <li>외부 환경 참조(Outer Environment Reference): 상위(외부) 스코프를 참조하는 포인터입니다.</li>
+</ol>
+
+<p>각 스코프는 자신만의 환경 레코드를 가지며, 외부 환경 참조를 통해 상위 스코프에 접근할 수 있습니다. 이러한 구조 덕분에 자바스크립트는 중첩된 함수 내부에서도 외부의 변수를 참조할 수 있습니다.</p>
+
+<p>이 구조는 클로저(Closure)와도 밀접한 관계가 있습니다. 클로저는 함수가 외부 함수의 스코프에 접근할 수 있도록 해주는 메커니즘으로, 렉시컬 환경을 깊이 이해하는 것이 클로저를 이해하는 데 중요한 역할을 합니다.</p>
+
+<p><br /></p>
+
+<h2 id="var와-let-const의-차이점">var와 let, const의 차이점</h2>
+
+<p><code class="language-plaintext highlighter-rouge">var</code>와 달리, <code class="language-plaintext highlighter-rouge">let</code>과 const는 블록 레벨의 스코프(Block Scope)를 따릅니다. 이는 <code class="language-plaintext highlighter-rouge">let</code>이나 <code class="language-plaintext highlighter-rouge">const</code>로 선언된 변수는 해당 블록 내에서만 유효하다는 것을 의미합니다. 이로 인해 의도치 않은 호이스팅 문제를 피할 수 있으며, 코드의 예측 가능성을 높여줍니다.</p>
+
+<p>예를 들어, 아래와 같은 코드를 보겠습니다:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// 10</span>
+
+<span class="k">if </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span> <span class="c1">// ReferenceError: y is not defined</span>
+</code></pre></div></div>
+
+<p>위 코드에서 var로 선언된 <code class="language-plaintext highlighter-rouge">x</code>는 블록 외부에서 접근이 가능하지만, <code class="language-plaintext highlighter-rouge">let</code>으로 선언된 <code class="language-plaintext highlighter-rouge">y</code>는 블록 외부에서 접근할 수 없습니다. 이는 <code class="language-plaintext highlighter-rouge">let</code>과 <code class="language-plaintext highlighter-rouge">const</code>가 블록 스코프를 가지기 때문에 발생하는 차이입니다.</p>
+
+<p><br /></p>
+
+<h2 id="끝내며">끝내며</h2>
+
+<p>이 글에서는 자바스크립트에서 렉시컬 환경이 어떻게 작동하는지, 그리고 <code class="language-plaintext highlighter-rouge">var</code>와 <code class="language-plaintext highlighter-rouge">let</code>, <code class="language-plaintext highlighter-rouge">const</code>의 차이점을 통해 스코프와 호이스팅의 중요성을 살펴보았습니다.</p>
+
+<p>렉시컬 환경은 자바스크립트에서 중요한 개념 중 하나로, 이를 잘 이해하는 것이 자바스크립트의 동작 방식을 깊이 있게 이해하는 데 필수적이라 생각합니다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/coffee.png"
+    srcset="/assets/img/coffee.png 1x,/assets/img/coffee.png 2x"
+    
+  
+  alt="H0ri"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <p>프론트엔드 개발 &amp; 일본어 공부를 위한 블로그입니다.</p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/bomlang" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:bomlang4211@gmail.com" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/project/2024-08-15-postCSSerror/" class="flip-title"><span>PostCSS line return parsing error??</span></a>  <time class="faded fine" datetime="2024-08-15T00:00:00+09:00">15 Aug 2024</time></li>                        <li class="h4">  <a href="/study/cs/2024-03-12-CSR&SSR/" class="flip-title"><span>Next.js를 사용하기 위해 알아야 할 점 (CSR &amp; SSR)</span></a>  <time class="faded fine" datetime="2024-03-12T00:00:00+09:00">12 Mar 2024</time></li>                        <li class="h4">  <a href="/study/etc/2024-02-08-enum/" class="flip-title"><span>타입스크립트 강의를 듣다가 enum에 대해서 까먹어버렸다</span></a>  <time class="faded fine" datetime="2024-02-08T00:00:00+09:00">08 Feb 2024</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2023. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/earth.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img/cat.png" class="avatar" alt="H0ri" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">H0ri</h2></a>
+    
+    
+      <p class="">
+        호리의 종합 발자취
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only"
+  >Navigation:</span
+>
+<ul>
+     
+  <li>
+    <div class="menu-wrapper">
+      
+      <a
+        id="_drawer--opened"
+        
+        href="/lifelog/"
+        class="sidebar-nav-item "
+        
+      >
+        lifelog
+      </a>
+    </div>
+    
+  </li>
+    
+  <li>
+    <div class="menu-wrapper">
+      
+      <button class="spread-btn" onclick="javascript:spread(11)">
+        <span id="spread-icon-11" class="material-icons"
+          >arrow_right</span
+        >
+      </button>
+      
+      <a
+        
+        href="/study/"
+        class="sidebar-nav-item "
+        
+      >
+        공부
+      </a>
+    </div>
+    
+    <div class="menu-wrapper">
+      <input type="checkbox" id="folder-checkbox-11" />
+      <ul>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/CS/"
+          >
+            CS
+          </a>
+        </li>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/react/"
+          >
+            React
+          </a>
+        </li>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/tailwind/"
+          >
+            tailwindCSS
+          </a>
+        </li>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/etc/"
+          >
+            etc
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+    
+  </li>
+    
+  <li>
+    <div class="menu-wrapper">
+      
+      <a
+        
+        href="/project/"
+        class="sidebar-nav-item "
+        
+      >
+        프로젝트
+      </a>
+    </div>
+    
+  </li>
+    
+  <li>
+    <div class="menu-wrapper">
+      
+      <button class="spread-btn" onclick="javascript:spread(13)">
+        <span id="spread-icon-13" class="material-icons"
+          >arrow_right</span
+        >
+      </button>
+      
+      <a
+        
+        href="/japanese/"
+        class="sidebar-nav-item "
+        
+      >
+        日本語勉強
+      </a>
+    </div>
+    
+    <div class="menu-wrapper">
+      <input type="checkbox" id="folder-checkbox-13" />
+      <ul>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/homework/"
+          >
+            宿題
+          </a>
+        </li>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/grammar/"
+          >
+            文法
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+    
+  </li>
+   
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/bomlang" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:bomlang4211@gmail.com" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

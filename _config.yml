@@ -35,7 +35,7 @@ keywords: [frontend, 일본어]
 # 사이트의 (정사각형) 로고입니다.
 # 제공되는 경우 사이드바 상단에 표시됩니다.
 # `jekyll-seo-tag` 플러그인에서도 사용됩니다.
-logo: /assets/img/logo.png
+logo: /assets/img/cat.png
 
 # `_data/authors.yml`의 첫 번째 항목과 동일한 저자여야 합니다.
 author:
@@ -53,10 +53,14 @@ menu:
   - title: 공부
     url: /study/
     submenu:
+      - title: CS
+        url: /CS/
       - title: React
         url: /react/
       - title: tailwindCSS
         url: /tailwind/
+      - title: etc
+        url: /etc/
   - title: 프로젝트
     url: /project/
   - title: 日本語勉強
@@ -91,8 +95,8 @@ paginate_path: /:num/
 # ---------------------------------------------------------------------------------------
 
 # remote_theme: qwtel/hydejack@v9
-# theme: jekyll-theme-hydejack
-remote_theme: hydecorp/hydejack@v9
+theme: jekyll-theme-hydejack
+# remote_theme: hydecorp/hydejack@v9
 
 # 커스터마이징
 # ----------------------------------------------------------------------------------------
@@ -269,7 +273,7 @@ hydejack:
   hide_dates: false
 
   # TODO
-  hide_last_modified: false
+  hide_last_modified: true
 
   # Note that dark mode only works in the PRO version of Hydejack.
   dark_mode:
@@ -337,7 +341,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-titles-from-headings
   - jekyll-include-cache
-  - jekyll-last-modified-at
+  # - jekyll-last-modified-at
 
 # SEO Tag
 # ---------------------------------------------------------------------------------------

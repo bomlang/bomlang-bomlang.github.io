@@ -7,15 +7,7 @@ categories:
   - React
 description: >
   리액트는 현대 프론트엔드 개발에서 핵심적인 역할을 하는 라이브러리입니다. 왜 많은 개발자들이 리액트를 선호하는지에 대해 설명합니다.
-
-# image :
-# path : /assets/img/blog/hydejack-9.jpg
 ---
-
----
-
-- toc
-  {:toc}
 
 # Why use React?
 

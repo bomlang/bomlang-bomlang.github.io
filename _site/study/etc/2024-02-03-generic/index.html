@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ko"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.1.6 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+
+
+  
+    
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Generic에 대해서 | H0ri</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Generic에 대해서" />
+<meta name="author" content="Lee Ho" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="description" content="TypeScript의 Generic문법에 대해서 공부하고 기록합니다." />
+<meta property="og:description" content="TypeScript의 Generic문법에 대해서 공부하고 기록합니다." />
+<link rel="canonical" href="http://localhost:4000/study/etc/2024-02-03-generic/" />
+<meta property="og:url" content="http://localhost:4000/study/etc/2024-02-03-generic/" />
+<meta property="og:site_name" content="H0ri" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-03T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Generic에 대해서" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Lee Ho"},"dateModified":"2024-08-20T09:01:03+09:00","datePublished":"2024-02-03T00:00:00+09:00","description":"TypeScript의 Generic문법에 대해서 공부하고 기록합니다.","headline":"Generic에 대해서","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/study/etc/2024-02-03-generic/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/img/cat.png"},"name":"Lee Ho"},"url":"http://localhost:4000/study/etc/2024-02-03-generic/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  
+    <meta name="keywords" content="frontend,일본어">
+  
+
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="H0ri">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="H0ri">
+
+<meta name="generator" content="Hydejack v9.1.6" />
+
+
+<link rel="alternate" href="http://localhost:4000/study/etc/2024-02-03-generic/" hreflang="ko-kr">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="H0ri" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+
+
+
+
+
+<script>!function(r,c){"use strict";function a(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}r.loadJS=function(e,t){var n=c.createElement("script"),e=(n.src=e,t&&a(n,"load",t,{once:!0}),c.scripts[0]);return e.parentNode.insertBefore(n,e),n},r._loaded=!1,r.loadJSDeferred=function(e,t){var n=c.createElement("script");function o(){r._loaded=!0,t&&a(n,"load",t,{once:!0});var e=c.scripts[0];e.parentNode.insertBefore(n,e)}return n.src=e,r._loaded?o():a(r,"load",o,{once:!0}),n},r.setRel=r.setRelStylesheet=function(e){a(c.getElementById(e),"load",function(){this.rel="stylesheet"},{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+  w._search = {
+    DATA_URL: '/assets/sitedata.json?no-cache',
+    STORAGE_KEY: 'mini-search/',
+    INDEX_KEY: 'index--2024-08-20T09:48:33+09:00',
+  };
+  w._clapButton = true;
+}(window);</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.1.6.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.5);--accent-color-highlight: rgba(79, 177, 186, 0.1);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71)}
+</style>
+
+
+<!--<![endif]-->
+
+
+<script type="module">
+  document.querySelector("hy-push-state").addEventListener("load", () => {
+    let tocElement = document.getElementById("markdown-toc");
+
+    if (tocElement) {
+      let affixedDiv = document.createElement("div");
+      affixedDiv.style.position = "relative";
+      affixedDiv.style.top = "-1rem";
+      tocElement.parentNode.insertBefore(affixedDiv, tocElement);
+
+      let headerList = document.getElementsByClassName("permalink");
+      let prevElement;
+      window.addEventListener("scroll", () => {
+        let hurdleTop = affixedDiv.getBoundingClientRect().top;
+        if (hurdleTop <= 0) {
+          tocElement.classList.add("affix");
+        } else {
+          tocElement.classList.remove("affix");
+        }
+
+        for (let i = 0; i < headerList.length; i++) {
+          if (headerList[i].getBoundingClientRect().top >= 0) {
+            prevElement?.style.removeProperty("font-weight");
+            let tocId = "markdown-toc-" + headerList[i].parentNode.id;
+            prevElement = document.getElementById(tocId);
+            prevElement.style.fontWeight = "bold";
+
+            break;
+          }
+        }
+      });
+    }
+  });
+</script>
+
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+<script src="/assets/js/sidebar-folder.js"></script>
+
+
+</head>
+
+<body class="no-break-layout">
+  
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-post"
+  role="main"
+>
+  <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/study/">study</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/study/etc/">etc</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>2024-02-03-generic</span>
+        
+      </li>
+    
+  
+</ul></nav>
+  
+
+
+
+
+
+
+
+
+
+
+<article id="post-study-etc-generic" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title flip-project-title">
+      
+        Generic에 대해서
+      
+    </h1>
+
+    <div class="post-date">
+      
+      <span class="ellipsis mr1">
+        <time datetime="2024-02-03T00:00:00+09:00">03 Feb 2024</time> in <a href="/study/" class="flip-title">Study</a> / <a href="/etc/" class="flip-title">Things I'm Interested In</a> 
+      </span>
+      
+    </div>
+
+    
+    
+
+    
+
+
+
+  
+    <p class="note-sm" >
+      TypeScript의 Generic문법에 대해서 공부하고 기록합니다.
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <h2 id="개요---타입스크립트를-공부하면서-두려움에-떨다">개요 - 타입스크립트를 공부하면서 두려움에 떨다</h2>
+
+<p>자바스크립트를 처음 배울 때도 그랬지만, 새로운 언어를 배우는 과정은 항상 두려움과 불안으로 가득합니다.</p>
+
+<p>타입스크립트를 처음 접했을 때도 마찬가지였습니다. 새로운 개념들을 이해하고 적용하는 과정에서 느끼는 막연한 두려움은, 마치 끝이 없는 미로 속을 걷는 기분이었습니다.</p>
+
+<p>하지만 그 두려움을 극복하고 한 발자국씩 나아가다 보면, 그 과정에서 얻는 성취감은 이루 말할 수 없습니다.</p>
+
+<p><br /></p>
+
+<p>타입스크립트를 처음 접했을 때, 특히 제네릭(Generic)이라는 개념이 저를 당혹스럽게 했습니다.</p>
+
+<p>이론적으로는 어느 정도 이해했지만, 실제로 어떻게 활용해야 할지 감이 잡히지 않았습니다.</p>
+
+<p>하지만 최근 팀 프로젝트에서 타입스크립트를 꼭 사용해야 하는 상황에 놓이면서, 제네릭을 포함한 타입스크립트의 다양한 기능들을 이해하고 활용할 수밖에 없었습니다.</p>
+
+<p>결국, 시행착오 끝에 조금씩 타입스크립트를 이해하게 되었고, 지금은 제네릭의 필요성과 그 유용성에 대해 어느 정도 알게 되었습니다.</p>
+
+<p><br /></p>
+
+<h2 id="제네릭을-왜-쓰는가">제네릭을 왜 쓰는가?</h2>
+
+<p>타입스크립트에서 제네릭은 다양한 타입을 다룰 때 매우 유용한 도구입니다. 제네릭을 사용하면 코드의 재사용성을 높이고, 타입 안정성을 유지하면서도 유연하게 코드를 작성할 수 있습니다.</p>
+
+<p>예를 들어, 다음과 같은 함수가 있다고 가정해 봅시다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">text</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">text</span><span class="p">(</span><span class="dl">"</span><span class="s2">하이</span><span class="dl">"</span><span class="p">);</span>
+<span class="nf">text</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span>
+<span class="nf">text</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>이 함수는 <code class="language-plaintext highlighter-rouge">item</code>이라는 인자를 받아 콘솔에 출력하고, 그 값을 반환합니다.</p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">item</code>의 타입은 암묵적으로 <code class="language-plaintext highlighter-rouge">any</code>로 취급됩니다. 따라서 이 함수는 <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">number</code>, <code class="language-plaintext highlighter-rouge">boolean</code> 타입의 값을 모두 처리할 수 있습니다.</p>
+
+<p>그러나 <code class="language-plaintext highlighter-rouge">any</code> 타입은 타입스크립트의 강력한 타입 안전성을 무너뜨릴 수 있습니다.</p>
+
+<p><br /></p>
+
+<p>이 함수를 string 타입만 처리하도록 제한한다면, 아래와 같이 작성할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">text</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">item</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">""</span><span class="p">).</span><span class="nf">reverse</span><span class="p">(</span><span class="dl">""</span><span class="p">).</span><span class="nf">join</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">text</span><span class="p">(</span><span class="dl">"</span><span class="s2">하이</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 실행 OK</span>
+<span class="nf">text</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span> <span class="c1">// 에러</span>
+<span class="nf">text</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">// 에러</span>
+</code></pre></div></div>
+
+<p>이렇게 하면 함수는 <code class="language-plaintext highlighter-rouge">string</code> 타입의 값만 받을 수 있게 됩니다.</p>
+
+<p>하지만 만약 number 타입도 처리해야 한다면, 새로운 함수를 만들어야 하는 불편함이 생깁니다.</p>
+
+<p><br /></p>
+
+<p>이를 해결하기 위해 우리는 유니온 타입을 사용할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">text</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="kr">number</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nf">text</span><span class="p">(</span><span class="mi">2323</span><span class="p">);</span>
+<span class="nf">text</span><span class="p">(</span><span class="dl">"</span><span class="s2">유니온타입</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>유니온 타입은 여러 타입을 받을 수 있게 해주지만, 문제는 타입스크립트가 이 경우 공통된 메서드나 속성에만 접근할 수 있게 한다는 점입니다.</p>
+
+<p><br /></p>
+
+<p>예를 들어, 아래와 같은 상황이 발생할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">text</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="kr">number</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nf">text</span><span class="p">(</span><span class="dl">"</span><span class="s2">유니온</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">a</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span> <span class="c1">// 에러</span>
+</code></pre></div></div>
+
+<p>이 코드는 <code class="language-plaintext highlighter-rouge">split()</code> 메서드가 <code class="language-plaintext highlighter-rouge">string</code> 타입에만 존재하기 때문에 타입스크립트는 오류를 발생시킵니다.</p>
+
+<p><strong>이런 문제를 해결하기 위해 등장한 것이 바로 제네릭입니다.</strong></p>
+
+<p><br /></p>
+
+<h2 id="제네릭-사용방법">제네릭 사용방법</h2>
+
+<p>제네릭을 사용하면 함수가 받을 타입을 나중에 결정할 수 있습니다. 예를 들어, 다음과 같이 제네릭을 사용할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">text</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="nx">T</span><span class="p">):</span> <span class="nx">T</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">text</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">"</span><span class="s2">나 제네릭 응애</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">text</span><span class="o">&lt;</span><span class="nx">boolean</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="nx">text</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">223</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">T</code>는 타입의 자리표(T)로, 함수가 호출될 때 그 타입이 결정됩니다. 예를 들어 <code class="language-plaintext highlighter-rouge">text&lt;string&gt;("나 제네릭 응애")</code>를 호출하면, <code class="language-plaintext highlighter-rouge">T</code>는 <code class="language-plaintext highlighter-rouge">string</code> 타입으로 변환되며, 함수는 <code class="language-plaintext highlighter-rouge">string</code> 타입의 값을 처리하게 됩니다.</p>
+
+<p>제네릭의 강력한 점은 이렇게 호출 시점에 타입을 지정할 수 있다는 것입니다. 이를 통해 코드의 유연성과 재사용성을 높일 수 있습니다.</p>
+
+<p><br /></p>
+
+<h2 id="제네릭의-실제-활용-예시">제네릭의 실제 활용 예시</h2>
+
+<p>타입스크립트의 기본 라이브러리에서도 제네릭이 널리 사용됩니다.</p>
+
+<p>예를 들어, Array 타입은 제네릭을 사용하여 다양한 타입의 배열을 정의할 수 있습니다.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">stringArray</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">apple</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">banana</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">cherry</span><span class="dl">"</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">numberArray</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>또한, Promise도 제네릭을 활용하여 비동기 작업의 결과 타입을 지정할 수 있습니다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">fetchData</span><span class="p">():</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nc">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nf">resolve</span><span class="p">(</span><span class="dl">"</span><span class="s2">데이터를 가져왔습니다!</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nf">fetchData</span><span class="p">().</span><span class="nf">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// 타입스크립트는 data가 string 타입임을 알고 있음</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="결론-제네릭-두려움을-극복하고-얻은-성취">결론: 제네릭, 두려움을 극복하고 얻은 성취</h2>
+
+<p>처음 제네릭을 접했을 때는 막연한 두려움이 있었지만, 결국 그 두려움을 극복하고 나니 타입스크립트의 강력한 도구를 하나 더 익히게 되었습니다.</p>
+
+<p>제네릭은 다양한 타입을 안전하게 처리하고, 코드의 유연성을 높이는 데 큰 도움을 줍니다.</p>
+
+<p>아직 마스터하지 못한 부분도 많지만, 타입스크립트를 더 깊이 이해하고 활용할 수 있게 되었다는 점에서 큰 성취감을 느낍니다.</p>
+
+<p>앞으로도 계속해서 학습을 이어가며, 타입스크립트의 더 깊은 부분을 탐구하고, 실제 프로젝트에서 더 효율적으로 활용할 수 있도록 노력할 것입니다.</p>
+
+  
+</article>
+
+
+
+  <hr class="dingbat related mb6" />
+
+
+
+
+
+
+  
+     
+
+
+  <aside class="about related mt4 mb4" role="complementary">
+    
+    
+
+<div class="author mt4">
+  
+
+  
+    
+
+
+<img
+  
+    src="/assets/img/coffee.png"
+    srcset="/assets/img/coffee.png 1x,/assets/img/coffee.png 2x"
+    
+  
+  alt="H0ri"
+  class="avatar"
+  
+  width="120"
+  height="120"
+  loading="lazy"
+/>
+
+  
+
+  
+  
+  <h2  class="page-title hr-bottom">
+    About
+  </h2>
+
+  <p>프론트엔드 개발 &amp; 일본어 공부를 위한 블로그입니다.</p>
+
+
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/bomlang" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:bomlang4211@gmail.com" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+
+  </aside>
+
+
+  
+
+  
+  
+
+  
+    
+
+
+  <aside class="related mb4" role="complementary">  <h2 class="hr-bottom">Related Posts</h2>  <ul class="related-posts">                  <li class="h4">  <a href="/project/2024-08-15-postCSSerror/" class="flip-title"><span>PostCSS line return parsing error??</span></a>  <time class="faded fine" datetime="2024-08-15T00:00:00+09:00">15 Aug 2024</time></li>                        <li class="h4">  <a href="/study/cs/2024-03-12-CSR&SSR/" class="flip-title"><span>Next.js를 사용하기 위해 알아야 할 점 (CSR &amp; SSR)</span></a>  <time class="faded fine" datetime="2024-03-12T00:00:00+09:00">12 Mar 2024</time></li>                        <li class="h4">  <a href="/study/etc/2024-02-08-enum/" class="flip-title"><span>타입스크립트 강의를 듣다가 enum에 대해서 까먹어버렸다</span></a>  <time class="faded fine" datetime="2024-02-08T00:00:00+09:00">08 Feb 2024</time></li>            </ul></aside>
+
+  
+
+  
+  
+
+  
+    
+
+  
+
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2023. All rights reserved.
+</small></p>
+  
+  
+    <nav class="legal"><small>
+    
+      
+      <a class="heading flip-title" href="/LICENSE/">LICENSE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/NOTICE/">NOTICE</a>
+      |
+    
+      
+      <a class="heading flip-title" href="/CHANGELOG/">CHANGELOG</a>
+      
+    
+    </small></nav>
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.1.6</span></small></p>
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/earth.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img/cat.png" class="avatar" alt="H0ri" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">H0ri</h2></a>
+    
+    
+      <p class="">
+        호리의 종합 발자취
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only"
+  >Navigation:</span
+>
+<ul>
+     
+  <li>
+    <div class="menu-wrapper">
+      
+      <a
+        id="_drawer--opened"
+        
+        href="/lifelog/"
+        class="sidebar-nav-item "
+        
+      >
+        lifelog
+      </a>
+    </div>
+    
+  </li>
+    
+  <li>
+    <div class="menu-wrapper">
+      
+      <button class="spread-btn" onclick="javascript:spread(11)">
+        <span id="spread-icon-11" class="material-icons"
+          >arrow_right</span
+        >
+      </button>
+      
+      <a
+        
+        href="/study/"
+        class="sidebar-nav-item "
+        
+      >
+        공부
+      </a>
+    </div>
+    
+    <div class="menu-wrapper">
+      <input type="checkbox" id="folder-checkbox-11" />
+      <ul>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/CS/"
+          >
+            CS
+          </a>
+        </li>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/react/"
+          >
+            React
+          </a>
+        </li>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/tailwind/"
+          >
+            tailwindCSS
+          </a>
+        </li>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/etc/"
+          >
+            etc
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+    
+  </li>
+    
+  <li>
+    <div class="menu-wrapper">
+      
+      <a
+        
+        href="/project/"
+        class="sidebar-nav-item "
+        
+      >
+        프로젝트
+      </a>
+    </div>
+    
+  </li>
+    
+  <li>
+    <div class="menu-wrapper">
+      
+      <button class="spread-btn" onclick="javascript:spread(13)">
+        <span id="spread-icon-13" class="material-icons"
+          >arrow_right</span
+        >
+      </button>
+      
+      <a
+        
+        href="/japanese/"
+        class="sidebar-nav-item "
+        
+      >
+        日本語勉強
+      </a>
+    </div>
+    
+    <div class="menu-wrapper">
+      <input type="checkbox" id="folder-checkbox-13" />
+      <ul>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/homework/"
+          >
+            宿題
+          </a>
+        </li>
+        
+        <li>
+          <a
+            class="sidebar-nav-item "
+            href="/grammar/"
+          >
+            文法
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+    
+  </li>
+   
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social:</span>
+<ul>
+  
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/bomlang" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="mailto:bomlang4211@gmail.com" title="Email" class="no-mark-external">
+      <span class="icon-mail"></span>
+      <span class="sr-only">Email</span>
+    </a>
+  </li>
+
+
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var t,n=document.createElement("script");!("noModule"in n)&&"onbeforeload"in n&&(t=!1,document.addEventListener("beforeload",function(e){if(e.target===n)t=!0;else if(!e.target.hasAttribute("nomodule")||!t)return;e.preventDefault()},!0),n.type="module",n.src=".",document.head.appendChild(n),n.remove())}();
+</script>
+  <script src="/assets/js/hydejack-9.1.6.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.1.6.js" nomodule defer></script>
+  
+
+  
+
+<!--<![endif]-->
+  <!-- <script>
+  document.querySelector('hy-push-state').setAttribute('prefetch', '');
+
+  document.querySelectorAll('.sidebar a[href^="/"]').forEach(function (el) { 
+    el.addEventListener('click', function (e) {
+      if (el.pathname === window.location.pathname) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('hy-drawer').close();
+      }
+    });
+  });
+</script> -->
+
+<!--
+Code for integrating CloudFlare's email protection with Hydejack's single page app loading.
+-->
+<script>
+  document.getElementById('_pushState').addEventListener('hy-push-state-after', function (e) {
+    function e(e){
+      (console.error?console.error:console.log).call(console,e)
+    }
+
+    function t(e){
+      return l.innerHTML='<a href="'+e.replace(/"/g,"&quot;")+'"></a>',l.childNodes[0].getAttribute("href")
+    }
+
+    function r(e,t){
+      var r=e.substr(t,2);return parseInt(r,16)
+    }
+
+    function n(e,n){
+      for(var o="",c=r(e,n),a=n+2;a<e.length;a+=2){
+        var l=r(e,a)^c;
+        o+=String.fromCharCode(l)
+      }
+      return t(o)
+    }
+
+    var o="/cdn-cgi/l/email-protection#",
+        c=".__cf_email__",
+        a="data-cfemail",
+        l=document.createElement("div");
+
+    !function(){
+      for(var t=document.getElementsByTagName("a"),r=0;r<t.length;r++)
+        try{
+          var c=t[r],a=c.href.indexOf(o);
+          a>-1&&(c.href="mailto:"+n(c.href,a+o.length))
+        }catch(t){
+          e(t)
+        }
+    }(),
+    function(){
+      for(var t=document.querySelectorAll(c),r=0;r<t.length;r++)
+        try{
+          var o=t[r],l=n(o.getAttribute(a),0),i=document.createTextNode(l);
+          o.parentNode.replaceChild(i,o)
+        }catch(t){
+          e(t)
+        }
+    }()
+  });
+</script>
+
+
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates (for web app):</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <nav id="breadcrumbs" class="screen-only"><ul>
+  
+  
+</ul></nav>
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading <a class="this-link" href=""></a>.
+
+    </p>
+  </div>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+</div>
+
+
+</body>
+</html>

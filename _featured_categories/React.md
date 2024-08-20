@@ -3,10 +3,10 @@
 layout: list
 
 # 태그 페이지의 제목입니다.
-title: Studying about React
+title: about React
 
 # 포스트의 프론트 매터에서 사용되는 태그의 이름입니다 (예: tags: [<slug>])입니다.
-slug: react
+slug: React
 
 # (선택 사항) 이 피쳐드 태그에 대한 짧은 (~150자) 설명을 작성하세요.
 description: >
