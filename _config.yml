@@ -95,8 +95,8 @@ paginate_path: /:num/
 # ---------------------------------------------------------------------------------------
 
 # remote_theme: qwtel/hydejack@v9
-theme: jekyll-theme-hydejack
-# remote_theme: hydecorp/hydejack@v9
+# theme: jekyll-theme-hydejack
+remote_theme: hydecorp/hydejack@v9
 
 # 커스터마이징
 # ----------------------------------------------------------------------------------------
