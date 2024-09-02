@@ -9,7 +9,7 @@ description: >
   이화여대 '반효경'교수님의 Operating Systems강의 중, 'System Structure & Program Execution 2'강의를 수강하고 학습합니다.
 ---
 
-<img src='/assets/img/공부/CS/hardware.png.png' alt='하드웨어 분류'/>
+<img src='/assets/img/공부/CS/hardware.png' alt='하드웨어 분류'/>
 
 하드웨어 분류
 
@@ -19,7 +19,7 @@ description: >
 
 # 동기식 입출력과 비동기식 입출력
 
-<img src='/assets/img/공부/CS/sync.png.png' alt='동기식 & 비동기식 입출력 비교' />
+<img src='/assets/img/공부/CS/sync.png' alt='동기식 & 비동기식 입출력 비교' />
 
 ## 동기식 입출력 (Synchronous I/O)
 

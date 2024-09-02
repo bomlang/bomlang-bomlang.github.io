@@ -11,7 +11,7 @@ description: >
 
 # 프로세스 생성 (Process Creation)
 
-[\*\*Copy-on-write (COW)](https://www.notion.so/4-Process-Management-e3adea29570744f5a1defc456d9323e3?pvs=21):\*\* 내용이 변경될 때 메모리를 복사합니다.
+**Copy-on-write (COW)** 내용이 변경될 때 메모리를 복사합니다.
 
 - \*부모 프로세스(Parent process)**는 **자식 프로세스(Child process)\*\*를 생성합니다.
 - 자식이 생성되면, **프로세스 트리**가 형성됩니다.
@@ -133,7 +133,7 @@ int main()
 
 자식이 종료될 때 까지 실행하는 시스템 콜입니다.
 
-![스크린샷 2024-09-02 오후 3.05.11.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c220dc6c-8c78-4cae-ae02-81aef8ad3066/0b9d597d-ce43-4f8a-afdf-be467bf49fb4/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-02_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.05.11.png)
+<img src='/assets/img/공부/CS/processManage1.png' alt='wait()' />
 
 - 프로세스 A가 wait() 시스템 콜을 호출하면
   - 커널은 child가 종료될 때까지 프로세스A를 sleep시킵니다. (block상태)
@@ -167,12 +167,12 @@ int main()
 
 **프로세스 간 협력 메커니즘 (IPC):**
 
-![스크린샷 2024-09-02 오후 3.25.03.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c220dc6c-8c78-4cae-ae02-81aef8ad3066/f067727a-8aab-4eb6-a2a7-834647bf23c7/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-02_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.25.03.png)
+<img src='/assets/img/공부/CS/processManage2.png' alt='IPC' />
 
-- [\*\*메시지 전달 (Message Passing)](https://www.notion.so/4-Process-Management-e3adea29570744f5a1defc456d9323e3?pvs=21):\*\* 커널을 통해 메시지를 전달하는 방식으로, 프로세스 간에 공유 변수를 사용하지 않고 통신합니다.
+- **메시지 전달 (Message Passing)** 커널을 통해 메시지를 전달하는 방식으로, 프로세스 간에 공유 변수를 사용하지 않고 통신합니다.
 - **공유 메모리 (Shared Memory):** 서로 다른 프로세스가 일부 주소 공간을 공유하는 방식으로, 효율적인 데이터 교환이 가능합니다.
 - 메시지를 전달하는 방법
-  - [message passing](https://www.notion.so/4-Process-Management-e3adea29570744f5a1defc456d9323e3?pvs=21): 커널을 통해 메세지 전달
+  - **message passing**: 커널을 통해 메세지 전달
 - 주소 강간을 공유하는 방법
   - shared memory: 서로 다른 프로세스 간에도 일부 주소 공간을 공유하게 하는 shared memory 메커니즘이 있습니다.
   - thread: thread는 사실상 하나의 프로세스이므로 프로세스 간 협력으로 보기에는 어렵지만, 동일한 process를 구성하는 thread들 간에는 주소 공간을 공유하므로 협력이 가능합니다.
@@ -183,10 +183,10 @@ int main()
   - 프로세스 사이에 공유 변수(shared variable)를 일체 사용하지 않고 통신하는 시스템
 - Direct Communication
   - 통신하려는 프로세스의 이름을 명시적으로 표시
-    ![스크린샷 2024-09-02 오후 3.20.36.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c220dc6c-8c78-4cae-ae02-81aef8ad3066/e4e4f259-aef1-40b3-8f6e-3cf42d547746/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-02_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.20.36.png)
+    <img src='/assets/img/공부/CS/processManage3.png' alt='Direct Communication' />
 - Indirect Communication
   - mailbox (또는 port)를 통해 메시지를 간접 전달
-    ![스크린샷 2024-09-02 오후 3.21.37.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c220dc6c-8c78-4cae-ae02-81aef8ad3066/389e2d3d-0ee9-42db-bd56-a05e8fa41986/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-02_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.21.37.png)
+    <img src='/assets/img/공부/CS/processManage4.png' alt='Indirect Communication' />
 
 <br/>
 
@@ -194,11 +194,11 @@ int main()
 
 프로그램 실행 동안 CPU와 I/O 작업이 연속적으로 수행되며, CPU 작업(CPU bursts)과 I/O 작업(I/O bursts)의 길이와 빈도는 서로 다릅니다.
 
-![스크린샷 2024-09-02 오후 3.28.59.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c220dc6c-8c78-4cae-ae02-81aef8ad3066/c678a32b-7b17-4970-a2ef-951f5309f709/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-02_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.28.59.png)
+<img src='/assets/img/공부/CS/processManage5.png' alt='CPU and I/O Bursts' />
 
 ### CPU-burst Time의 분포
 
-![CPU-burst Time graph](https://prod-files-secure.s3.us-west-2.amazonaws.com/c220dc6c-8c78-4cae-ae02-81aef8ad3066/f27e1c4b-dac6-4975-8729-e61dc00523ca/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-02_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.32.35.png)
+<img src='/assets/img/공부/CS/processManage6.png' alt='CPU-Bursts Time Graph' />
 
 CPU-burst Time graph
 
